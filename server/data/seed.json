@@ -1,0 +1,1142 @@
+{
+  "_meta": {
+    "note": "Provisional cited seed data for the AllFish MVP. Water-existence provenance = USGS NHD (US) / NRCan National Hydrographic Network (CA), plus a per-feature OpenStreetMap permalink attached at geometry-fetch time. Species provenance cites the authoritative state/provincial fish & wildlife agency. `confidence` reflects how specific the citation is to THIS water body: 'high' = species presence is authoritatively documented for this named water; 'medium' = documented regionally / by the cited agency; 'low' = angler-reported. Exact per-record deep links are enriched from the allfish-research workflow's verified recommendedSeed.",
+    "water_licenses": {
+      "US_NHD": "U.S. Government public domain (USGS National Hydrography Dataset)",
+      "CA_NHN": "Open Government Licence — Canada (NRCan National Hydrographic Network)",
+      "OSM": "© OpenStreetMap contributors, Open Database License (ODbL)"
+    }
+  },
+  "waterbodies": [
+    {
+      "id": "us-mn-minnetonka",
+      "name": "Lake Minnetonka",
+      "water_type": "lake",
+      "country": "US",
+      "admin": "Minnesota",
+      "description": "Large multi-bay recreational lake west of Minneapolis; one of Minnesota's most heavily fished metro lakes.",
+      "centroid": [
+        -93.6205,
+        44.9375
+      ],
+      "radius_km": 4.2,
+      "water_source": {
+        "name": "USGS National Hydrography Dataset",
+        "url": "https://www.usgs.gov/national-hydrography/national-hydrography-dataset",
+        "license": "U.S. Government public domain"
+      },
+      "species": [
+        {
+          "common_name": "Walleye",
+          "scientific_name": "Sander vitreus",
+          "category": "gamefish",
+          "evidence": "survey & stocking",
+          "confidence": "high",
+          "source_name": "MN DNR LakeFinder — Lake Minnetonka",
+          "source_url": "https://www.dnr.state.mn.us/lakefind/index.html",
+          "source_publisher": "Minnesota Department of Natural Resources"
+        },
+        {
+          "common_name": "Largemouth Bass",
+          "scientific_name": "Micropterus salmoides",
+          "category": "gamefish",
+          "evidence": "survey",
+          "confidence": "high",
+          "source_name": "MN DNR LakeFinder — Lake Minnetonka",
+          "source_url": "https://www.dnr.state.mn.us/lakefind/index.html",
+          "source_publisher": "Minnesota Department of Natural Resources"
+        },
+        {
+          "common_name": "Northern Pike",
+          "scientific_name": "Esox lucius",
+          "category": "gamefish",
+          "evidence": "survey",
+          "confidence": "high",
+          "source_name": "MN DNR LakeFinder — Lake Minnetonka",
+          "source_url": "https://www.dnr.state.mn.us/lakefind/index.html",
+          "source_publisher": "Minnesota Department of Natural Resources"
+        },
+        {
+          "common_name": "Muskellunge",
+          "scientific_name": "Esox masquinongy",
+          "category": "gamefish",
+          "evidence": "stocking",
+          "confidence": "high",
+          "source_name": "MN DNR LakeFinder — Lake Minnetonka",
+          "source_url": "https://www.dnr.state.mn.us/lakefind/index.html",
+          "source_publisher": "Minnesota Department of Natural Resources"
+        },
+        {
+          "common_name": "Bluegill",
+          "scientific_name": "Lepomis macrochirus",
+          "category": "panfish",
+          "evidence": "survey",
+          "confidence": "high",
+          "source_name": "MN DNR LakeFinder — Lake Minnetonka",
+          "source_url": "https://www.dnr.state.mn.us/lakefind/index.html",
+          "source_publisher": "Minnesota Department of Natural Resources"
+        },
+        {
+          "common_name": "Black Crappie",
+          "scientific_name": "Pomoxis nigromaculatus",
+          "category": "panfish",
+          "evidence": "survey",
+          "confidence": "high",
+          "source_name": "MN DNR LakeFinder — Lake Minnetonka",
+          "source_url": "https://www.dnr.state.mn.us/lakefind/index.html",
+          "source_publisher": "Minnesota Department of Natural Resources"
+        }
+      ]
+    },
+    {
+      "id": "us-mn-millelacs",
+      "name": "Mille Lacs Lake",
+      "water_type": "lake",
+      "country": "US",
+      "admin": "Minnesota",
+      "description": "132,000-acre walleye factory in central Minnesota, one of North America's premier walleye and smallmouth fisheries.",
+      "centroid": [
+        -93.6516,
+        46.2513
+      ],
+      "radius_km": 9.5,
+      "water_source": {
+        "name": "USGS National Hydrography Dataset",
+        "url": "https://www.usgs.gov/national-hydrography/national-hydrography-dataset",
+        "license": "U.S. Government public domain"
+      },
+      "species": [
+        {
+          "common_name": "Walleye",
+          "scientific_name": "Sander vitreus",
+          "category": "gamefish",
+          "evidence": "fisheries survey",
+          "confidence": "high",
+          "source_name": "MN DNR LakeFinder — Mille Lacs Lake fisheries survey (DOW 48000200)",
+          "source_url": "https://www.dnr.state.mn.us/lakefind/showreport.html?downum=48000200",
+          "source_publisher": "Minnesota Department of Natural Resources"
+        },
+        {
+          "common_name": "Smallmouth Bass",
+          "scientific_name": "Micropterus dolomieu",
+          "category": "gamefish",
+          "evidence": "fisheries survey",
+          "confidence": "high",
+          "source_name": "MN DNR LakeFinder — Mille Lacs Lake fisheries survey (DOW 48000200)",
+          "source_url": "https://www.dnr.state.mn.us/lakefind/showreport.html?downum=48000200",
+          "source_publisher": "Minnesota Department of Natural Resources"
+        },
+        {
+          "common_name": "Northern Pike",
+          "scientific_name": "Esox lucius",
+          "category": "gamefish",
+          "evidence": "fisheries survey",
+          "confidence": "high",
+          "source_name": "MN DNR LakeFinder — Mille Lacs Lake fisheries survey (DOW 48000200)",
+          "source_url": "https://www.dnr.state.mn.us/lakefind/showreport.html?downum=48000200",
+          "source_publisher": "Minnesota Department of Natural Resources"
+        },
+        {
+          "common_name": "Muskellunge",
+          "scientific_name": "Esox masquinongy",
+          "category": "gamefish",
+          "evidence": "fisheries survey",
+          "confidence": "high",
+          "source_name": "MN DNR LakeFinder — Mille Lacs Lake fisheries survey (DOW 48000200)",
+          "source_url": "https://www.dnr.state.mn.us/lakefind/showreport.html?downum=48000200",
+          "source_publisher": "Minnesota Department of Natural Resources"
+        },
+        {
+          "common_name": "Yellow Perch",
+          "scientific_name": "Perca flavescens",
+          "category": "panfish",
+          "evidence": "fisheries survey",
+          "confidence": "high",
+          "source_name": "MN DNR LakeFinder — Mille Lacs Lake fisheries survey (DOW 48000200)",
+          "source_url": "https://www.dnr.state.mn.us/lakefind/showreport.html?downum=48000200",
+          "source_publisher": "Minnesota Department of Natural Resources"
+        },
+        {
+          "common_name": "Tullibee (Cisco)",
+          "scientific_name": "Coregonus artedi",
+          "category": "baitfish",
+          "evidence": "fisheries survey",
+          "confidence": "high",
+          "source_name": "MN DNR LakeFinder — Mille Lacs Lake fisheries survey (DOW 48000200)",
+          "source_url": "https://www.dnr.state.mn.us/lakefind/showreport.html?downum=48000200",
+          "source_publisher": "Minnesota Department of Natural Resources"
+        }
+      ]
+    },
+    {
+      "id": "us-ca-tahoe",
+      "name": "Lake Tahoe",
+      "water_type": "lake",
+      "country": "US",
+      "admin": "California / Nevada",
+      "description": "Large, deep, cold alpine lake on the CA/NV border known for lake trout (mackinaw) and kokanee.",
+      "centroid": [
+        -120.0324,
+        39.0968
+      ],
+      "radius_km": 12.0,
+      "water_source": {
+        "name": "USGS National Hydrography Dataset",
+        "url": "https://www.usgs.gov/national-hydrography/national-hydrography-dataset",
+        "license": "U.S. Government public domain"
+      },
+      "species": [
+        {
+          "common_name": "Lake Trout (Mackinaw)",
+          "scientific_name": "Salvelinus namaycush",
+          "category": "trout",
+          "evidence": "agency fishery info",
+          "confidence": "high",
+          "source_name": "Nevada Department of Wildlife — Fishing",
+          "source_url": "https://www.ndow.org/activity/fish/",
+          "source_publisher": "Nevada Department of Wildlife"
+        },
+        {
+          "common_name": "Rainbow Trout",
+          "scientific_name": "Oncorhynchus mykiss",
+          "category": "trout",
+          "evidence": "stocking",
+          "confidence": "high",
+          "source_name": "California Department of Fish and Wildlife — Fishing",
+          "source_url": "https://wildlife.ca.gov/Fishing",
+          "source_publisher": "California Department of Fish and Wildlife"
+        },
+        {
+          "common_name": "Kokanee Salmon",
+          "scientific_name": "Oncorhynchus nerka",
+          "category": "salmon",
+          "evidence": "agency fishery info",
+          "confidence": "high",
+          "source_name": "Nevada Department of Wildlife — Fishing",
+          "source_url": "https://www.ndow.org/activity/fish/",
+          "source_publisher": "Nevada Department of Wildlife"
+        },
+        {
+          "common_name": "Brown Trout",
+          "scientific_name": "Salmo trutta",
+          "category": "trout",
+          "evidence": "iNaturalist research-grade observations",
+          "confidence": "medium",
+          "source_name": "iNaturalist — research-grade fish observations in Lake Tahoe",
+          "source_url": "https://www.inaturalist.org/observations?taxon_id=47178&nelat=39.24&nelng=-119.90&swlat=38.90&swlng=-120.18&quality_grade=research&verifiable=true",
+          "source_publisher": "iNaturalist"
+        },
+        {
+          "common_name": "Lahontan Cutthroat Trout",
+          "scientific_name": "Oncorhynchus clarkii henshawi",
+          "category": "trout",
+          "evidence": "iNaturalist research-grade observations",
+          "confidence": "medium",
+          "source_name": "iNaturalist — research-grade fish observations in Lake Tahoe",
+          "source_url": "https://www.inaturalist.org/observations?taxon_id=47178&nelat=39.24&nelng=-119.90&swlat=38.90&swlng=-120.18&quality_grade=research&verifiable=true",
+          "source_publisher": "iNaturalist"
+        },
+        {
+          "common_name": "Fathead Minnow",
+          "scientific_name": "Pimephales promelas",
+          "category": "baitfish",
+          "evidence": "iNaturalist research-grade observations",
+          "confidence": "medium",
+          "source_name": "iNaturalist — research-grade fish observations in Lake Tahoe",
+          "source_url": "https://www.inaturalist.org/observations?taxon_id=47178&nelat=39.24&nelng=-119.90&swlat=38.90&swlng=-120.18&quality_grade=research&verifiable=true",
+          "source_publisher": "iNaturalist"
+        }
+      ]
+    },
+    {
+      "id": "us-al-guntersville",
+      "name": "Lake Guntersville",
+      "water_type": "reservoir",
+      "country": "US",
+      "admin": "Alabama",
+      "description": "69,000-acre TVA reservoir on the Tennessee River; a nationally-ranked trophy largemouth bass fishery.",
+      "centroid": [
+        -86.2947,
+        34.423
+      ],
+      "radius_km": 6.0,
+      "water_source": {
+        "name": "USGS National Hydrography Dataset",
+        "url": "https://www.usgs.gov/national-hydrography/national-hydrography-dataset",
+        "license": "U.S. Government public domain"
+      },
+      "species": [
+        {
+          "common_name": "Largemouth Bass",
+          "scientific_name": "Micropterus salmoides",
+          "category": "gamefish",
+          "evidence": "agency fishery info",
+          "confidence": "high",
+          "source_name": "Outdoor Alabama (ADCNR) — Fishing",
+          "source_url": "https://www.outdooralabama.com/fishing",
+          "source_publisher": "Alabama Dept. of Conservation & Natural Resources"
+        },
+        {
+          "common_name": "Black Crappie",
+          "scientific_name": "Pomoxis nigromaculatus",
+          "category": "panfish",
+          "evidence": "agency fishery info",
+          "confidence": "medium",
+          "source_name": "Outdoor Alabama (ADCNR) — Fishing",
+          "source_url": "https://www.outdooralabama.com/fishing",
+          "source_publisher": "Alabama Dept. of Conservation & Natural Resources"
+        },
+        {
+          "common_name": "Bluegill",
+          "scientific_name": "Lepomis macrochirus",
+          "category": "panfish",
+          "evidence": "agency fishery info",
+          "confidence": "medium",
+          "source_name": "Outdoor Alabama (ADCNR) — Fishing",
+          "source_url": "https://www.outdooralabama.com/fishing",
+          "source_publisher": "Alabama Dept. of Conservation & Natural Resources"
+        }
+      ]
+    },
+    {
+      "id": "us-ny-chautauqua",
+      "name": "Chautauqua Lake",
+      "water_type": "lake",
+      "country": "US",
+      "admin": "New York",
+      "description": "Shallow, weedy western-NY lake famous for muskellunge and walleye.",
+      "centroid": [
+        -79.4001,
+        42.18
+      ],
+      "radius_km": 3.0,
+      "water_source": {
+        "name": "USGS National Hydrography Dataset",
+        "url": "https://www.usgs.gov/national-hydrography/national-hydrography-dataset",
+        "license": "U.S. Government public domain"
+      },
+      "species": [
+        {
+          "common_name": "Muskellunge",
+          "scientific_name": "Esox masquinongy",
+          "category": "gamefish",
+          "evidence": "agency fishery info & stocking",
+          "confidence": "high",
+          "source_name": "NYSDEC — Freshwater Fishing",
+          "source_url": "https://dec.ny.gov/things-to-do/freshwater-fishing",
+          "source_publisher": "New York State Dept. of Environmental Conservation"
+        },
+        {
+          "common_name": "Walleye",
+          "scientific_name": "Sander vitreus",
+          "category": "gamefish",
+          "evidence": "agency fishery info",
+          "confidence": "high",
+          "source_name": "NYSDEC — Freshwater Fishing",
+          "source_url": "https://dec.ny.gov/things-to-do/freshwater-fishing",
+          "source_publisher": "New York State Dept. of Environmental Conservation"
+        },
+        {
+          "common_name": "Largemouth Bass",
+          "scientific_name": "Micropterus salmoides",
+          "category": "gamefish",
+          "evidence": "agency fishery info",
+          "confidence": "medium",
+          "source_name": "NYSDEC — Freshwater Fishing",
+          "source_url": "https://dec.ny.gov/things-to-do/freshwater-fishing",
+          "source_publisher": "New York State Dept. of Environmental Conservation"
+        }
+      ]
+    },
+    {
+      "id": "us-or-deschutes",
+      "name": "Deschutes River",
+      "water_type": "river",
+      "country": "US",
+      "admin": "Oregon",
+      "description": "Iconic central-Oregon river; a blue-ribbon trout and summer steelhead fishery.",
+      "centroid": [
+        -121.31,
+        44.06
+      ],
+      "reach_km": 14.0,
+      "water_source": {
+        "name": "USGS National Hydrography Dataset",
+        "url": "https://www.usgs.gov/national-hydrography/national-hydrography-dataset",
+        "license": "U.S. Government public domain"
+      },
+      "species": [
+        {
+          "common_name": "Redband / Rainbow Trout",
+          "scientific_name": "Oncorhynchus mykiss",
+          "category": "trout",
+          "evidence": "agency fishery info",
+          "confidence": "high",
+          "source_name": "Oregon Dept. of Fish & Wildlife — MyODFW",
+          "source_url": "https://myodfw.com/fishing",
+          "source_publisher": "Oregon Department of Fish and Wildlife"
+        },
+        {
+          "common_name": "Summer Steelhead",
+          "scientific_name": "Oncorhynchus mykiss",
+          "category": "trout",
+          "evidence": "agency fishery info",
+          "confidence": "medium",
+          "source_name": "Oregon Dept. of Fish & Wildlife — MyODFW",
+          "source_url": "https://myodfw.com/fishing",
+          "source_publisher": "Oregon Department of Fish and Wildlife"
+        },
+        {
+          "common_name": "Mountain Whitefish",
+          "scientific_name": "Prosopium williamsoni",
+          "category": "gamefish",
+          "evidence": "agency fishery info",
+          "confidence": "medium",
+          "source_name": "Oregon Dept. of Fish & Wildlife — MyODFW",
+          "source_url": "https://myodfw.com/fishing",
+          "source_publisher": "Oregon Department of Fish and Wildlife"
+        }
+      ]
+    },
+    {
+      "id": "us-mn-lakeofthewoods",
+      "name": "Lake of the Woods",
+      "water_type": "lake",
+      "country": "US",
+      "admin": "Minnesota / Ontario",
+      "description": "Massive border lake straddling Minnesota, Ontario and Manitoba; a walleye and sauger destination.",
+      "centroid": [
+        -94.85,
+        49.25
+      ],
+      "radius_km": 20.0,
+      "water_source": {
+        "name": "USGS National Hydrography Dataset",
+        "url": "https://www.usgs.gov/national-hydrography/national-hydrography-dataset",
+        "license": "U.S. Government public domain"
+      },
+      "species": [
+        {
+          "common_name": "Walleye",
+          "scientific_name": "Sander vitreus",
+          "category": "gamefish",
+          "evidence": "agency fishery info",
+          "confidence": "high",
+          "source_name": "MN DNR — Lake of the Woods",
+          "source_url": "https://www.dnr.state.mn.us/lakefind/index.html",
+          "source_publisher": "Minnesota Department of Natural Resources"
+        },
+        {
+          "common_name": "Sauger",
+          "scientific_name": "Sander canadensis",
+          "category": "gamefish",
+          "evidence": "agency fishery info",
+          "confidence": "high",
+          "source_name": "MN DNR — Lake of the Woods",
+          "source_url": "https://www.dnr.state.mn.us/lakefind/index.html",
+          "source_publisher": "Minnesota Department of Natural Resources"
+        },
+        {
+          "common_name": "Muskellunge",
+          "scientific_name": "Esox masquinongy",
+          "category": "gamefish",
+          "evidence": "agency fishery info",
+          "confidence": "medium",
+          "source_name": "MN DNR — Lake of the Woods",
+          "source_url": "https://www.dnr.state.mn.us/lakefind/index.html",
+          "source_publisher": "Minnesota Department of Natural Resources"
+        },
+        {
+          "common_name": "Lake Sturgeon",
+          "scientific_name": "Acipenser fulvescens",
+          "category": "gamefish",
+          "evidence": "agency fishery info",
+          "confidence": "medium",
+          "source_name": "MN DNR — Lake of the Woods",
+          "source_url": "https://www.dnr.state.mn.us/lakefind/index.html",
+          "source_publisher": "Minnesota Department of Natural Resources"
+        }
+      ]
+    },
+    {
+      "id": "ca-on-simcoe",
+      "name": "Lake Simcoe",
+      "water_type": "lake",
+      "country": "CA",
+      "admin": "Ontario",
+      "description": "Southern-Ontario lake renowned for ice-fishing lake trout, whitefish, and perch.",
+      "centroid": [
+        -79.34,
+        44.42
+      ],
+      "radius_km": 12.0,
+      "water_source": {
+        "name": "NRCan National Hydrographic Network (NHN)",
+        "url": "https://open.canada.ca/data/en/dataset/a4b190fe-e090-4e6d-881e-b87956c07977",
+        "license": "Open Government Licence — Canada"
+      },
+      "species": [
+        {
+          "common_name": "Lake Trout",
+          "scientific_name": "Salvelinus namaycush",
+          "category": "trout",
+          "evidence": "agency fishery info",
+          "confidence": "high",
+          "source_name": "Ontario — Fishing",
+          "source_url": "https://www.ontario.ca/page/fishing",
+          "source_publisher": "Government of Ontario"
+        },
+        {
+          "common_name": "Lake Whitefish",
+          "scientific_name": "Coregonus clupeaformis",
+          "category": "gamefish",
+          "evidence": "agency fishery info",
+          "confidence": "medium",
+          "source_name": "Ontario — Fishing",
+          "source_url": "https://www.ontario.ca/page/fishing",
+          "source_publisher": "Government of Ontario"
+        },
+        {
+          "common_name": "Yellow Perch",
+          "scientific_name": "Perca flavescens",
+          "category": "panfish",
+          "evidence": "agency fishery info",
+          "confidence": "high",
+          "source_name": "Ontario — Fishing",
+          "source_url": "https://www.ontario.ca/page/fishing",
+          "source_publisher": "Government of Ontario"
+        },
+        {
+          "common_name": "Northern Pike",
+          "scientific_name": "Esox lucius",
+          "category": "gamefish",
+          "evidence": "agency fishery info",
+          "confidence": "medium",
+          "source_name": "Ontario — Fishing",
+          "source_url": "https://www.ontario.ca/page/fishing",
+          "source_publisher": "Government of Ontario"
+        }
+      ]
+    },
+    {
+      "id": "ca-on-nipissing",
+      "name": "Lake Nipissing",
+      "water_type": "lake",
+      "country": "CA",
+      "admin": "Ontario",
+      "description": "Large, relatively shallow Ontario lake near North Bay; a classic walleye and muskie fishery.",
+      "centroid": [
+        -79.75,
+        46.28
+      ],
+      "radius_km": 14.0,
+      "water_source": {
+        "name": "NRCan National Hydrographic Network (NHN)",
+        "url": "https://open.canada.ca/data/en/dataset/a4b190fe-e090-4e6d-881e-b87956c07977",
+        "license": "Open Government Licence — Canada"
+      },
+      "species": [
+        {
+          "common_name": "Walleye",
+          "scientific_name": "Sander vitreus",
+          "category": "gamefish",
+          "evidence": "agency fishery info",
+          "confidence": "high",
+          "source_name": "Ontario — Fishing",
+          "source_url": "https://www.ontario.ca/page/fishing",
+          "source_publisher": "Government of Ontario"
+        },
+        {
+          "common_name": "Muskellunge",
+          "scientific_name": "Esox masquinongy",
+          "category": "gamefish",
+          "evidence": "agency fishery info",
+          "confidence": "high",
+          "source_name": "Ontario — Fishing",
+          "source_url": "https://www.ontario.ca/page/fishing",
+          "source_publisher": "Government of Ontario"
+        },
+        {
+          "common_name": "Northern Pike",
+          "scientific_name": "Esox lucius",
+          "category": "gamefish",
+          "evidence": "agency fishery info",
+          "confidence": "medium",
+          "source_name": "Ontario — Fishing",
+          "source_url": "https://www.ontario.ca/page/fishing",
+          "source_publisher": "Government of Ontario"
+        },
+        {
+          "common_name": "Smallmouth Bass",
+          "scientific_name": "Micropterus dolomieu",
+          "category": "gamefish",
+          "evidence": "agency fishery info",
+          "confidence": "medium",
+          "source_name": "Ontario — Fishing",
+          "source_url": "https://www.ontario.ca/page/fishing",
+          "source_publisher": "Government of Ontario"
+        }
+      ]
+    },
+    {
+      "id": "ca-ab-bowriver",
+      "name": "Bow River",
+      "water_type": "river",
+      "country": "CA",
+      "admin": "Alberta",
+      "description": "World-class tailwater trout river flowing through Calgary; famous for large wild brown and rainbow trout.",
+      "centroid": [
+        -114.05,
+        51.05
+      ],
+      "reach_km": 16.0,
+      "water_source": {
+        "name": "NRCan National Hydrographic Network (NHN)",
+        "url": "https://open.canada.ca/data/en/dataset/a4b190fe-e090-4e6d-881e-b87956c07977",
+        "license": "Open Government Licence — Canada"
+      },
+      "species": [
+        {
+          "common_name": "Brown Trout",
+          "scientific_name": "Salmo trutta",
+          "category": "trout",
+          "evidence": "agency fishery info",
+          "confidence": "high",
+          "source_name": "Alberta — Fishing",
+          "source_url": "https://www.alberta.ca/fishing",
+          "source_publisher": "Government of Alberta"
+        },
+        {
+          "common_name": "Rainbow Trout",
+          "scientific_name": "Oncorhynchus mykiss",
+          "category": "trout",
+          "evidence": "agency fishery info",
+          "confidence": "high",
+          "source_name": "Alberta — Fishing",
+          "source_url": "https://www.alberta.ca/fishing",
+          "source_publisher": "Government of Alberta"
+        },
+        {
+          "common_name": "Mountain Whitefish",
+          "scientific_name": "Prosopium williamsoni",
+          "category": "gamefish",
+          "evidence": "agency fishery info",
+          "confidence": "medium",
+          "source_name": "Alberta — Fishing",
+          "source_url": "https://www.alberta.ca/fishing",
+          "source_publisher": "Government of Alberta"
+        }
+      ]
+    },
+    {
+      "id": "ca-bc-fraser",
+      "name": "Fraser River",
+      "water_type": "river",
+      "country": "CA",
+      "admin": "British Columbia",
+      "description": "British Columbia's largest river; renowned for white sturgeon and all five Pacific salmon species.",
+      "centroid": [
+        -122.3,
+        49.13
+      ],
+      "reach_km": 20.0,
+      "water_source": {
+        "name": "NRCan National Hydrographic Network (NHN)",
+        "url": "https://open.canada.ca/data/en/dataset/a4b190fe-e090-4e6d-881e-b87956c07977",
+        "license": "Open Government Licence — Canada"
+      },
+      "species": [
+        {
+          "common_name": "White Sturgeon",
+          "scientific_name": "Acipenser transmontanus",
+          "category": "gamefish",
+          "evidence": "agency fishery info",
+          "confidence": "high",
+          "source_name": "Fisheries and Oceans Canada — Pacific Region",
+          "source_url": "https://www.pac.dfo-mpo.gc.ca/",
+          "source_publisher": "Fisheries and Oceans Canada (DFO)"
+        },
+        {
+          "common_name": "Chinook Salmon",
+          "scientific_name": "Oncorhynchus tshawytscha",
+          "category": "salmon",
+          "evidence": "agency fishery info",
+          "confidence": "high",
+          "source_name": "Fisheries and Oceans Canada — Pacific Region",
+          "source_url": "https://www.pac.dfo-mpo.gc.ca/",
+          "source_publisher": "Fisheries and Oceans Canada (DFO)"
+        },
+        {
+          "common_name": "Sockeye Salmon",
+          "scientific_name": "Oncorhynchus nerka",
+          "category": "salmon",
+          "evidence": "agency fishery info",
+          "confidence": "high",
+          "source_name": "Fisheries and Oceans Canada — Pacific Region",
+          "source_url": "https://www.pac.dfo-mpo.gc.ca/",
+          "source_publisher": "Fisheries and Oceans Canada (DFO)"
+        }
+      ]
+    },
+    {
+      "id": "ca-bc-okanagan",
+      "name": "Okanagan Lake",
+      "water_type": "lake",
+      "country": "CA",
+      "admin": "British Columbia",
+      "description": "Long, deep interior-BC lake near Kelowna; kokanee and rainbow trout fishery with a rich native minnow forage base.",
+      "centroid": [
+        -119.6,
+        49.88
+      ],
+      "radius_km": 20.0,
+      "water_source": {
+        "name": "NRCan National Hydrographic Network (NHN)",
+        "url": "https://open.canada.ca/data/en/dataset/a4b190fe-e090-4e6d-881e-b87956c07977",
+        "license": "Open Government Licence — Canada"
+      },
+      "species": [
+        {
+          "common_name": "Kokanee Salmon",
+          "scientific_name": "Oncorhynchus nerka",
+          "category": "salmon",
+          "evidence": "stocking & iNaturalist observations",
+          "confidence": "high",
+          "source_name": "BC Freshwater Fisheries Society — stocking + iNaturalist",
+          "source_url": "https://www.gofishbc.com/stocked-fish/",
+          "source_publisher": "Freshwater Fisheries Society of BC"
+        },
+        {
+          "common_name": "Rainbow Trout",
+          "scientific_name": "Oncorhynchus mykiss",
+          "category": "trout",
+          "evidence": "stocking",
+          "confidence": "high",
+          "source_name": "BC Freshwater Fisheries Society — Stocking Reports",
+          "source_url": "https://www.gofishbc.com/stocked-fish/",
+          "source_publisher": "Freshwater Fisheries Society of BC"
+        },
+        {
+          "common_name": "Redside Shiner",
+          "scientific_name": "Richardsonius balteatus",
+          "category": "baitfish",
+          "evidence": "iNaturalist research-grade observations",
+          "confidence": "medium",
+          "source_name": "iNaturalist — research-grade fish observations in Okanagan Lake",
+          "source_url": "https://www.inaturalist.org/observations?taxon_id=47178&nelat=50.30&nelng=-119.40&swlat=49.50&swlng=-119.90&quality_grade=research&verifiable=true",
+          "source_publisher": "iNaturalist"
+        },
+        {
+          "common_name": "Northern Pikeminnow",
+          "scientific_name": "Ptychocheilus oregonensis",
+          "category": "baitfish",
+          "evidence": "iNaturalist research-grade observations",
+          "confidence": "medium",
+          "source_name": "iNaturalist — research-grade fish observations in Okanagan Lake",
+          "source_url": "https://www.inaturalist.org/observations?taxon_id=47178&nelat=50.30&nelng=-119.40&swlat=49.50&swlng=-119.90&quality_grade=research&verifiable=true",
+          "source_publisher": "iNaturalist"
+        },
+        {
+          "common_name": "Yellow Perch",
+          "scientific_name": "Perca flavescens",
+          "category": "panfish",
+          "evidence": "iNaturalist research-grade observations",
+          "confidence": "medium",
+          "source_name": "iNaturalist — research-grade fish observations in Okanagan Lake",
+          "source_url": "https://www.inaturalist.org/observations?taxon_id=47178&nelat=50.30&nelng=-119.40&swlat=49.50&swlng=-119.90&quality_grade=research&verifiable=true",
+          "source_publisher": "iNaturalist"
+        }
+      ]
+    },
+    {
+      "id": "us-tx-inks",
+      "name": "Inks Lake",
+      "water_type": "reservoir",
+      "country": "US",
+      "admin": "Texas",
+      "description": "Constant-level Highland Lakes reservoir on the Colorado River in the Texas Hill Country; year-round bass and catfish plus winter rainbow trout stockings.",
+      "centroid": [
+        -98.372,
+        30.735
+      ],
+      "radius_km": 2.0,
+      "water_source": {
+        "name": "USGS National Hydrography Dataset",
+        "url": "https://www.usgs.gov/national-hydrography/national-hydrography-dataset",
+        "license": "U.S. Government public domain"
+      },
+      "species": [
+        {
+          "common_name": "Largemouth Bass",
+          "scientific_name": "Micropterus salmoides",
+          "category": "gamefish",
+          "evidence": "TPWD stocking history",
+          "confidence": "high",
+          "source_name": "TPWD — Inks Lake stocking history (WB_code 0379)",
+          "source_url": "https://tpwd.texas.gov/fishboat/fish/action/stock_bywater.php?WB_code=0379",
+          "source_publisher": "Texas Parks & Wildlife Department"
+        },
+        {
+          "common_name": "Channel Catfish",
+          "scientific_name": "Ictalurus punctatus",
+          "category": "gamefish",
+          "evidence": "TPWD stocking history",
+          "confidence": "high",
+          "source_name": "TPWD — Inks Lake stocking history (WB_code 0379)",
+          "source_url": "https://tpwd.texas.gov/fishboat/fish/action/stock_bywater.php?WB_code=0379",
+          "source_publisher": "Texas Parks & Wildlife Department"
+        },
+        {
+          "common_name": "Hybrid Striped Bass",
+          "scientific_name": "Morone saxatilis x chrysops",
+          "category": "gamefish",
+          "evidence": "TPWD stocking history",
+          "confidence": "high",
+          "source_name": "TPWD — Inks Lake stocking history (WB_code 0379)",
+          "source_url": "https://tpwd.texas.gov/fishboat/fish/action/stock_bywater.php?WB_code=0379",
+          "source_publisher": "Texas Parks & Wildlife Department"
+        },
+        {
+          "common_name": "Rainbow Trout",
+          "scientific_name": "Oncorhynchus mykiss",
+          "category": "trout",
+          "evidence": "TPWD winter stocking",
+          "confidence": "high",
+          "source_name": "TPWD — Inks Lake stocking history (WB_code 0379)",
+          "source_url": "https://tpwd.texas.gov/fishboat/fish/action/stock_bywater.php?WB_code=0379",
+          "source_publisher": "Texas Parks & Wildlife Department"
+        }
+      ]
+    },
+    {
+      "id": "us-ma-jamaicapond",
+      "name": "Jamaica Pond",
+      "water_type": "pond",
+      "country": "US",
+      "admin": "Massachusetts",
+      "description": "Boston's largest natural freshwater body, in the Emerald Necklace; spring-fed, stocked with trout and a popular urban shore fishery.",
+      "centroid": [
+        -71.1206,
+        42.3172
+      ],
+      "radius_km": 0.4,
+      "water_source": {
+        "name": "USGS National Hydrography Dataset",
+        "url": "https://www.usgs.gov/national-hydrography/national-hydrography-dataset",
+        "license": "U.S. Government public domain"
+      },
+      "species": [
+        {
+          "common_name": "Rainbow Trout",
+          "scientific_name": "Oncorhynchus mykiss",
+          "category": "trout",
+          "source_name": "MassWildlife — Trout Stocking Report",
+          "source_url": "https://www.mass.gov/trout-stocking",
+          "source_publisher": "Massachusetts Division of Fisheries & Wildlife",
+          "evidence": "MassWildlife trout stocking",
+          "confidence": "high"
+        },
+        {
+          "common_name": "Largemouth Bass",
+          "scientific_name": "Micropterus salmoides",
+          "category": "gamefish",
+          "source_name": "iNaturalist — research-grade fish observations",
+          "source_url": "https://www.inaturalist.org/observations?taxon_id=47178&nelat=42.324&nelng=-71.113&swlat=42.31&swlng=-71.128&quality_grade=research&verifiable=true",
+          "source_publisher": "iNaturalist",
+          "evidence": "iNaturalist research-grade observations",
+          "confidence": "medium"
+        },
+        {
+          "common_name": "Chain Pickerel",
+          "scientific_name": "Esox niger",
+          "category": "gamefish",
+          "source_name": "iNaturalist — research-grade fish observations",
+          "source_url": "https://www.inaturalist.org/observations?taxon_id=47178&nelat=42.324&nelng=-71.113&swlat=42.31&swlng=-71.128&quality_grade=research&verifiable=true",
+          "source_publisher": "iNaturalist",
+          "evidence": "iNaturalist research-grade observations",
+          "confidence": "medium"
+        },
+        {
+          "common_name": "Bluegill",
+          "scientific_name": "Lepomis macrochirus",
+          "category": "panfish",
+          "source_name": "iNaturalist — research-grade fish observations",
+          "source_url": "https://www.inaturalist.org/observations?taxon_id=47178&nelat=42.324&nelng=-71.113&swlat=42.31&swlng=-71.128&quality_grade=research&verifiable=true",
+          "source_publisher": "iNaturalist",
+          "evidence": "iNaturalist research-grade observations",
+          "confidence": "medium"
+        },
+        {
+          "common_name": "Brown Bullhead",
+          "scientific_name": "Ameiurus nebulosus",
+          "category": "gamefish",
+          "source_name": "iNaturalist — research-grade fish observations",
+          "source_url": "https://www.inaturalist.org/observations?taxon_id=47178&nelat=42.324&nelng=-71.113&swlat=42.31&swlng=-71.128&quality_grade=research&verifiable=true",
+          "source_publisher": "iNaturalist",
+          "evidence": "iNaturalist research-grade observations",
+          "confidence": "medium"
+        }
+      ]
+    },
+    {
+      "id": "us-ma-walden",
+      "name": "Walden Pond",
+      "water_type": "pond",
+      "country": "US",
+      "admin": "Massachusetts",
+      "description": "Deep glacial kettle pond in Concord made famous by Thoreau; a DCR reservation, stocked with trout and holding warmwater species.",
+      "centroid": [
+        -71.3358,
+        42.439
+      ],
+      "radius_km": 0.5,
+      "water_source": {
+        "name": "USGS National Hydrography Dataset",
+        "url": "https://www.usgs.gov/national-hydrography/national-hydrography-dataset",
+        "license": "U.S. Government public domain"
+      },
+      "species": [
+        {
+          "common_name": "Rainbow Trout",
+          "scientific_name": "Oncorhynchus mykiss",
+          "category": "trout",
+          "source_name": "MassWildlife — Trout Stocking Report",
+          "source_url": "https://www.mass.gov/trout-stocking",
+          "source_publisher": "Massachusetts Division of Fisheries & Wildlife",
+          "evidence": "MassWildlife trout stocking",
+          "confidence": "high"
+        },
+        {
+          "common_name": "Largemouth Bass",
+          "scientific_name": "Micropterus salmoides",
+          "category": "gamefish",
+          "source_name": "iNaturalist — research-grade fish observations",
+          "source_url": "https://www.inaturalist.org/observations?taxon_id=47178&nelat=42.445&nelng=-71.329&swlat=42.433&swlng=-71.342&quality_grade=research&verifiable=true",
+          "source_publisher": "iNaturalist",
+          "evidence": "iNaturalist research-grade observations",
+          "confidence": "medium"
+        },
+        {
+          "common_name": "Chain Pickerel",
+          "scientific_name": "Esox niger",
+          "category": "gamefish",
+          "source_name": "iNaturalist — research-grade fish observations",
+          "source_url": "https://www.inaturalist.org/observations?taxon_id=47178&nelat=42.445&nelng=-71.329&swlat=42.433&swlng=-71.342&quality_grade=research&verifiable=true",
+          "source_publisher": "iNaturalist",
+          "evidence": "iNaturalist research-grade observations",
+          "confidence": "medium"
+        },
+        {
+          "common_name": "Pumpkinseed",
+          "scientific_name": "Lepomis gibbosus",
+          "category": "panfish",
+          "source_name": "iNaturalist — research-grade fish observations",
+          "source_url": "https://www.inaturalist.org/observations?taxon_id=47178&nelat=42.445&nelng=-71.329&swlat=42.433&swlng=-71.342&quality_grade=research&verifiable=true",
+          "source_publisher": "iNaturalist",
+          "evidence": "iNaturalist research-grade observations",
+          "confidence": "medium"
+        }
+      ]
+    },
+    {
+      "id": "us-ma-uppermystic",
+      "name": "Upper Mystic Lake",
+      "water_type": "lake",
+      "country": "US",
+      "admin": "Massachusetts",
+      "description": "Deep lake on the Arlington/Medford line north of Boston; a well-known metro bass and pickerel fishery.",
+      "centroid": [
+        -71.149,
+        42.4305
+      ],
+      "radius_km": 0.8,
+      "water_source": {
+        "name": "USGS National Hydrography Dataset",
+        "url": "https://www.usgs.gov/national-hydrography/national-hydrography-dataset",
+        "license": "U.S. Government public domain"
+      },
+      "species": [
+        {
+          "common_name": "Largemouth Bass",
+          "scientific_name": "Micropterus salmoides",
+          "category": "gamefish",
+          "source_name": "iNaturalist — research-grade fish observations",
+          "source_url": "https://www.inaturalist.org/observations?taxon_id=47178&nelat=42.437&nelng=-71.142&swlat=42.424&swlng=-71.156&quality_grade=research&verifiable=true",
+          "source_publisher": "iNaturalist",
+          "evidence": "iNaturalist research-grade observations",
+          "confidence": "medium"
+        },
+        {
+          "common_name": "Smallmouth Bass",
+          "scientific_name": "Micropterus dolomieu",
+          "category": "gamefish",
+          "source_name": "iNaturalist — research-grade fish observations",
+          "source_url": "https://www.inaturalist.org/observations?taxon_id=47178&nelat=42.437&nelng=-71.142&swlat=42.424&swlng=-71.156&quality_grade=research&verifiable=true",
+          "source_publisher": "iNaturalist",
+          "evidence": "iNaturalist research-grade observations",
+          "confidence": "medium"
+        },
+        {
+          "common_name": "Chain Pickerel",
+          "scientific_name": "Esox niger",
+          "category": "gamefish",
+          "source_name": "iNaturalist — research-grade fish observations",
+          "source_url": "https://www.inaturalist.org/observations?taxon_id=47178&nelat=42.437&nelng=-71.142&swlat=42.424&swlng=-71.156&quality_grade=research&verifiable=true",
+          "source_publisher": "iNaturalist",
+          "evidence": "iNaturalist research-grade observations",
+          "confidence": "medium"
+        },
+        {
+          "common_name": "White Perch",
+          "scientific_name": "Morone americana",
+          "category": "panfish",
+          "source_name": "iNaturalist — research-grade fish observations",
+          "source_url": "https://www.inaturalist.org/observations?taxon_id=47178&nelat=42.437&nelng=-71.142&swlat=42.424&swlng=-71.156&quality_grade=research&verifiable=true",
+          "source_publisher": "iNaturalist",
+          "evidence": "iNaturalist research-grade observations",
+          "confidence": "medium"
+        },
+        {
+          "common_name": "Bluegill",
+          "scientific_name": "Lepomis macrochirus",
+          "category": "panfish",
+          "source_name": "iNaturalist — research-grade fish observations",
+          "source_url": "https://www.inaturalist.org/observations?taxon_id=47178&nelat=42.437&nelng=-71.142&swlat=42.424&swlng=-71.156&quality_grade=research&verifiable=true",
+          "source_publisher": "iNaturalist",
+          "evidence": "iNaturalist research-grade observations",
+          "confidence": "medium"
+        }
+      ]
+    },
+    {
+      "id": "us-ma-houghtons",
+      "name": "Houghton's Pond",
+      "water_type": "pond",
+      "country": "US",
+      "admin": "Massachusetts",
+      "description": "Blue Hills Reservation pond in Milton, minutes from Quincy; a DCR recreation pond stocked with trout with resident bass and panfish.",
+      "centroid": [
+        -71.0855,
+        42.211
+      ],
+      "radius_km": 0.3,
+      "water_source": {
+        "name": "USGS National Hydrography Dataset",
+        "url": "https://www.usgs.gov/national-hydrography/national-hydrography-dataset",
+        "license": "U.S. Government public domain"
+      },
+      "species": [
+        {
+          "common_name": "Rainbow Trout",
+          "scientific_name": "Oncorhynchus mykiss",
+          "category": "trout",
+          "source_name": "MassWildlife — Trout Stocking Report",
+          "source_url": "https://www.mass.gov/trout-stocking",
+          "source_publisher": "Massachusetts Division of Fisheries & Wildlife",
+          "evidence": "MassWildlife trout stocking",
+          "confidence": "high"
+        },
+        {
+          "common_name": "Largemouth Bass",
+          "scientific_name": "Micropterus salmoides",
+          "category": "gamefish",
+          "source_name": "iNaturalist — research-grade fish observations",
+          "source_url": "https://www.inaturalist.org/observations?taxon_id=47178&nelat=42.217&nelng=-71.079&swlat=42.206&swlng=-71.092&quality_grade=research&verifiable=true",
+          "source_publisher": "iNaturalist",
+          "evidence": "iNaturalist research-grade observations",
+          "confidence": "medium"
+        },
+        {
+          "common_name": "Bluegill",
+          "scientific_name": "Lepomis macrochirus",
+          "category": "panfish",
+          "source_name": "iNaturalist — research-grade fish observations",
+          "source_url": "https://www.inaturalist.org/observations?taxon_id=47178&nelat=42.217&nelng=-71.079&swlat=42.206&swlng=-71.092&quality_grade=research&verifiable=true",
+          "source_publisher": "iNaturalist",
+          "evidence": "iNaturalist research-grade observations",
+          "confidence": "medium"
+        },
+        {
+          "common_name": "Chain Pickerel",
+          "scientific_name": "Esox niger",
+          "category": "gamefish",
+          "source_name": "iNaturalist — research-grade fish observations",
+          "source_url": "https://www.inaturalist.org/observations?taxon_id=47178&nelat=42.217&nelng=-71.079&swlat=42.206&swlng=-71.092&quality_grade=research&verifiable=true",
+          "source_publisher": "iNaturalist",
+          "evidence": "iNaturalist research-grade observations",
+          "confidence": "medium"
+        }
+      ]
+    },
+    {
+      "id": "us-ma-charles",
+      "name": "Charles River",
+      "water_type": "river",
+      "country": "US",
+      "admin": "Massachusetts",
+      "description": "The river between Boston and Cambridge; a surprisingly productive urban warmwater fishery with bass, pickerel, and a rich forage base.",
+      "centroid": [
+        -71.095,
+        42.356
+      ],
+      "reach_km": 9.0,
+      "water_source": {
+        "name": "USGS National Hydrography Dataset",
+        "url": "https://www.usgs.gov/national-hydrography/national-hydrography-dataset",
+        "license": "U.S. Government public domain"
+      },
+      "species": [
+        {
+          "common_name": "Largemouth Bass",
+          "scientific_name": "Micropterus salmoides",
+          "category": "gamefish",
+          "source_name": "iNaturalist — research-grade fish observations",
+          "source_url": "https://www.inaturalist.org/observations?taxon_id=47178&nelat=42.375&nelng=-71.06&swlat=42.345&swlng=-71.13&quality_grade=research&verifiable=true",
+          "source_publisher": "iNaturalist",
+          "evidence": "iNaturalist research-grade observations",
+          "confidence": "medium"
+        },
+        {
+          "common_name": "Smallmouth Bass",
+          "scientific_name": "Micropterus dolomieu",
+          "category": "gamefish",
+          "source_name": "iNaturalist — research-grade fish observations",
+          "source_url": "https://www.inaturalist.org/observations?taxon_id=47178&nelat=42.375&nelng=-71.06&swlat=42.345&swlng=-71.13&quality_grade=research&verifiable=true",
+          "source_publisher": "iNaturalist",
+          "evidence": "iNaturalist research-grade observations",
+          "confidence": "medium"
+        },
+        {
+          "common_name": "Chain Pickerel",
+          "scientific_name": "Esox niger",
+          "category": "gamefish",
+          "source_name": "iNaturalist — research-grade fish observations",
+          "source_url": "https://www.inaturalist.org/observations?taxon_id=47178&nelat=42.375&nelng=-71.06&swlat=42.345&swlng=-71.13&quality_grade=research&verifiable=true",
+          "source_publisher": "iNaturalist",
+          "evidence": "iNaturalist research-grade observations",
+          "confidence": "medium"
+        },
+        {
+          "common_name": "American Eel",
+          "scientific_name": "Anguilla rostrata",
+          "category": "gamefish",
+          "source_name": "iNaturalist — research-grade fish observations",
+          "source_url": "https://www.inaturalist.org/observations?taxon_id=47178&nelat=42.375&nelng=-71.06&swlat=42.345&swlng=-71.13&quality_grade=research&verifiable=true",
+          "source_publisher": "iNaturalist",
+          "evidence": "iNaturalist research-grade observations",
+          "confidence": "medium"
+        },
+        {
+          "common_name": "Golden Shiner",
+          "scientific_name": "Notemigonus crysoleucas",
+          "category": "baitfish",
+          "source_name": "iNaturalist — research-grade fish observations",
+          "source_url": "https://www.inaturalist.org/observations?taxon_id=47178&nelat=42.375&nelng=-71.06&swlat=42.345&swlng=-71.13&quality_grade=research&verifiable=true",
+          "source_publisher": "iNaturalist",
+          "evidence": "iNaturalist research-grade observations",
+          "confidence": "medium"
+        }
+      ]
+    }
+  ]
+}

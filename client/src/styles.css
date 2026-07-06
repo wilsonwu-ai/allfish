@@ -1,0 +1,234 @@
+:root {
+  --water-900: #082f3f;
+  --water-800: #0b3d52;
+  --water-700: #0b4f6c;
+  --water-600: #0b6fa4;
+  --accent: #0ea5e9;
+  --teal: #14b8a6;
+  --amber: #f59e0b;
+  --green: #15a34a;
+  --ink: #0f172a;
+  --muted: #64748b;
+  --line: #e6ebf1;
+  --bg: #f5f8fa;
+  --card: #ffffff;
+  --shadow-sm: 0 1px 2px rgba(8, 47, 63, 0.06), 0 1px 3px rgba(8, 47, 63, 0.08);
+  --shadow-md: 0 6px 18px rgba(8, 47, 63, 0.10);
+  --radius: 14px;
+  --rail-w: 388px;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+}
+
+* { box-sizing: border-box; }
+html, body, #root { height: 100%; margin: 0; }
+body { background: var(--bg); color: var(--ink); -webkit-font-smoothing: antialiased; }
+a { color: var(--water-600); }
+button { font-family: inherit; cursor: pointer; }
+
+.app { display: flex; flex-direction: column; height: 100%; }
+
+/* ---------------------------------- Topbar ---------------------------------- */
+.topbar {
+  display: flex; align-items: center; gap: 18px;
+  padding: 0 18px; height: 62px; flex: 0 0 auto;
+  background: linear-gradient(100deg, var(--water-900), var(--water-700));
+  color: #fff; box-shadow: var(--shadow-md); z-index: 30;
+}
+.brand { display: flex; align-items: center; gap: 9px; cursor: pointer; user-select: none; }
+.brand-mark { font-size: 24px; }
+.brand-name { font-size: 21px; font-weight: 800; letter-spacing: -0.02em; }
+.brand-accent { color: #7dd3fc; }
+
+.searchbox { position: relative; flex: 1 1 auto; max-width: 460px; }
+.search-input {
+  width: 100%; height: 40px; border: none; border-radius: 999px;
+  padding: 0 18px; font-size: 15px; background: rgba(255, 255, 255, 0.96);
+  color: var(--ink); box-shadow: var(--shadow-sm); outline: none;
+}
+.search-input:focus { box-shadow: 0 0 0 3px rgba(125, 211, 252, 0.6); }
+.search-results {
+  position: absolute; top: 46px; left: 0; right: 0; z-index: 40;
+  background: #fff; border-radius: 12px; box-shadow: var(--shadow-md);
+  list-style: none; margin: 0; padding: 6px; max-height: 320px; overflow: auto;
+}
+.search-results button {
+  width: 100%; text-align: left; border: none; background: none;
+  padding: 9px 12px; border-radius: 8px; color: var(--ink); font-size: 14px;
+}
+.search-results button:hover { background: var(--bg); }
+
+.filters { display: flex; gap: 8px; }
+.filters select {
+  height: 38px; border: none; border-radius: 10px; padding: 0 12px;
+  background: rgba(255, 255, 255, 0.14); color: #fff; font-size: 13.5px;
+  outline: none; cursor: pointer; backdrop-filter: blur(4px);
+}
+.filters select option { color: var(--ink); }
+
+.banner {
+  background: #fef3c7; color: #92400e; padding: 8px 18px; font-size: 13.5px;
+  border-bottom: 1px solid #fde68a; z-index: 20;
+}
+
+/* ----------------------------------- Body ----------------------------------- */
+.body { position: relative; flex: 1 1 auto; display: flex; min-height: 0; }
+
+.rail {
+  width: var(--rail-w); flex: 0 0 var(--rail-w); height: 100%;
+  background: var(--card); border-right: 1px solid var(--line);
+  overflow-y: auto; overflow-x: hidden; transition: margin-left 0.28s ease; z-index: 15;
+}
+.rail.closed { margin-left: calc(-1 * var(--rail-w)); }
+
+.rail-toggle {
+  position: absolute; top: 14px; left: var(--rail-w); transform: translateX(-50%);
+  z-index: 16; width: 26px; height: 46px; border: 1px solid var(--line);
+  background: #fff; border-radius: 0 8px 8px 0; box-shadow: var(--shadow-sm);
+  color: var(--water-700); font-size: 18px; transition: left 0.28s ease;
+}
+.rail.closed ~ .rail-toggle { left: 0; }
+
+.map-wrap { flex: 1 1 auto; position: relative; min-width: 0; }
+
+/* "Search this area" — appears when the map is panned/zoomed away from the
+   last search, and re-queries the visible viewport on click. */
+.search-area {
+  position: absolute; top: 16px; left: 50%; transform: translateX(-50%);
+  z-index: 12; display: inline-flex; align-items: center; gap: 8px;
+  height: 40px; padding: 0 18px; border-radius: 999px;
+  background: #fff; color: var(--water-700); border: 1px solid var(--line);
+  font-size: 14px; font-weight: 700; box-shadow: var(--shadow-md);
+  animation: searchAreaIn 0.18s ease-out;
+}
+.search-area:hover { background: #f0f7fb; }
+.search-area:disabled { opacity: 0.7; cursor: default; }
+.search-area svg { color: var(--accent); }
+@keyframes searchAreaIn { from { opacity: 0; transform: translate(-50%, -8px); } to { opacity: 1; transform: translate(-50%, 0); } }
+@media (prefers-reduced-motion: reduce) { .search-area { animation: none; } }
+/* width/height 100% (not inset:0) so the map fills even though MapLibre's own
+   CSS forces the container to position:relative. .map-wrap has a definite
+   flex height, so 100% resolves correctly. */
+.map-wrap .map-canvas { position: absolute; inset: 0; width: 100%; height: 100%; }
+
+/* -------------------------------- Results list ------------------------------ */
+.results-head {
+  position: sticky; top: 0; background: #fff; z-index: 2;
+  padding: 14px 18px; border-bottom: 1px solid var(--line);
+  font-weight: 700; font-size: 14px; color: var(--water-800);
+}
+.results-list, .review-list, .species-list { list-style: none; margin: 0; padding: 0; }
+.result-card {
+  width: 100%; text-align: left; border: none; background: none;
+  padding: 14px 18px; border-bottom: 1px solid var(--line); display: block;
+  transition: background 0.12s;
+}
+.result-card:hover { background: #f0f7fb; }
+.result-card.active { background: #e6f4fb; box-shadow: inset 3px 0 0 var(--accent); }
+.rc-top { display: flex; align-items: center; justify-content: space-between; gap: 10px; }
+.rc-name { font-weight: 700; font-size: 15.5px; color: var(--ink); }
+.rc-meta { margin-top: 2px; }
+.rc-stats { margin-top: 8px; display: flex; align-items: center; gap: 14px; font-size: 13px; }
+.rc-rating { display: inline-flex; align-items: center; gap: 5px; }
+.rc-species { color: var(--water-600); font-weight: 600; }
+.empty { padding: 30px 18px; color: var(--muted); font-size: 14px; }
+
+/* ---------------------------------- Chips ----------------------------------- */
+.chip {
+  display: inline-flex; align-items: center; font-size: 11.5px; font-weight: 700;
+  padding: 3px 9px; border-radius: 999px; white-space: nowrap;
+}
+.chip-type { background: #e0f2fe; color: #0369a1; }
+.type-river, .type-stream { background: #cffafe; color: #0e7490; }
+.type-reservoir { background: #ede9fe; color: #6d28d9; }
+.chip-cat { background: #f1f5f9; color: #475569; text-transform: capitalize; }
+
+.muted { color: var(--muted); }
+.small { font-size: 12px; }
+
+/* ---------------------------------- Stars ----------------------------------- */
+.stars { display: inline-flex; align-items: center; gap: 1px; line-height: 0; }
+.star-btn { border: none; background: none; padding: 1px; line-height: 0; }
+.star-static { line-height: 0; }
+
+/* --------------------------------- Detail ----------------------------------- */
+.detail { padding: 0 0 40px; }
+.back {
+  border: none; background: none; color: var(--water-600); font-weight: 700;
+  font-size: 13.5px; padding: 14px 18px 6px;
+}
+.detail-head { padding: 4px 18px 14px; border-bottom: 1px solid var(--line); }
+.detail-head h2 { margin: 4px 0 8px; font-size: 24px; letter-spacing: -0.02em; }
+.detail-sub { display: flex; align-items: center; gap: 10px; font-size: 13.5px; }
+.detail-rating { margin-top: 12px; display: flex; align-items: center; gap: 7px; font-size: 14px; }
+.detail-desc { padding: 14px 18px 0; margin: 0; color: #334155; line-height: 1.5; font-size: 14.5px; }
+
+section { padding: 18px; border-bottom: 1px solid var(--line); }
+section h3 { margin: 0 0 4px; font-size: 15px; display: flex; align-items: center; gap: 8px; }
+.count {
+  background: var(--water-700); color: #fff; font-size: 12px; font-weight: 700;
+  border-radius: 999px; padding: 1px 8px;
+}
+.section-note { margin: 0 0 12px; color: var(--muted); font-size: 12.5px; }
+
+.prov { background: #f0f9ff; }
+.prov-line { margin: 6px 0 4px; font-size: 13.5px; }
+.prov-meta { margin: 0; font-size: 12.5px; color: var(--muted); }
+
+/* -------------------------------- Species ----------------------------------- */
+.species-row { padding: 12px 0; border-bottom: 1px dashed var(--line); }
+.species-row:last-child { border-bottom: none; }
+.species-main { display: flex; align-items: baseline; gap: 8px; flex-wrap: wrap; }
+.species-name { font-weight: 700; font-size: 14.5px; }
+.species-sci { font-style: italic; color: var(--muted); font-size: 12.5px; }
+.species-meta { display: flex; gap: 6px; margin: 6px 0; align-items: center; }
+.species-cite { font-size: 12px; }
+.species-cite a { color: var(--water-600); text-decoration: none; }
+.species-cite a:hover { text-decoration: underline; }
+.conf { font-size: 11px; font-weight: 700; padding: 2px 8px; border-radius: 999px; }
+.conf-high { background: #dcfce7; color: #15803d; }
+.conf-medium { background: #fef9c3; color: #a16207; }
+.conf-low { background: #fee2e2; color: #b91c1c; }
+
+/* --------------------------------- Reviews ---------------------------------- */
+.review-form { background: #f8fafc; border: 1px solid var(--line); border-radius: 12px; padding: 14px; margin-bottom: 16px; }
+.review-form h4 { margin: 0 0 10px; font-size: 14px; }
+.rf-row { display: flex; align-items: center; gap: 10px; margin-bottom: 8px; }
+.rf-input {
+  width: 100%; border: 1px solid var(--line); border-radius: 9px; padding: 9px 11px;
+  font-size: 14px; font-family: inherit; margin-bottom: 8px; outline: none; background: #fff;
+}
+.rf-input:focus { border-color: var(--accent); box-shadow: 0 0 0 3px rgba(14, 165, 233, 0.15); }
+.rf-row .rf-input { margin-bottom: 0; }
+.rf-text { min-height: 76px; resize: vertical; }
+.rf-stars { flex: 0 0 auto; }
+.rf-err { color: #b91c1c; font-size: 12.5px; margin-bottom: 8px; }
+
+.btn { border: none; border-radius: 10px; padding: 10px 16px; font-weight: 700; font-size: 14px; }
+.btn-primary { background: var(--water-600); color: #fff; }
+.btn-primary:hover { background: var(--water-700); }
+.btn-primary:disabled { opacity: 0.6; cursor: default; }
+
+.review-card { padding: 12px 0; border-bottom: 1px solid var(--line); }
+.review-card:last-child { border-bottom: none; }
+.review-head { display: flex; align-items: center; justify-content: space-between; }
+.review-author { font-weight: 700; font-size: 14px; }
+.review-target { font-size: 12.5px; color: var(--water-600); margin-top: 2px; }
+.review-body { margin: 6px 0 4px; font-size: 14px; line-height: 1.45; color: #334155; }
+.review-date { font-size: 12px; color: var(--muted); }
+
+/* MapLibre control tweaks */
+.maplibregl-ctrl-attrib { font-size: 10px; }
+
+/* -------------------------------- Responsive -------------------------------- */
+@media (max-width: 760px) {
+  :root { --rail-w: 100%; }
+  .filters { display: none; }
+  .rail {
+    position: absolute; bottom: 0; left: 0; right: 0; top: auto;
+    height: 56%; border-right: none; border-top: 1px solid var(--line);
+    border-radius: 18px 18px 0 0; box-shadow: 0 -6px 20px rgba(8, 47, 63, 0.12);
+    transition: transform 0.28s ease;
+  }
+  .rail.closed { margin-left: 0; transform: translateY(calc(100% - 46px)); }
+  .rail-toggle { display: none; }
+}

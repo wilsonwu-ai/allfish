@@ -1,0 +1,26 @@
+{
+  "name": "allfish",
+  "version": "0.1.0",
+  "private": true,
+  "description": "AllFish — an AllTrails-style web app for anglers to discover water bodies (rivers, lakes, ponds) across the US & Canada, see cited fish-species data, and post reviews.",
+  "workspaces": [
+    "server",
+    "client"
+  ],
+  "scripts": {
+    "install:all": "npm install",
+    "fetch:geometry": "node server/db/fetch-geometry.js",
+    "seed": "node server/db/seed.js",
+    "build:client": "npm --workspace client run build",
+    "export:static": "node server/db/export-static.js",
+    "build:pages": "npm run export:static && VITE_STATIC=1 npm --workspace client run build -- --base=./",
+    "dev:server": "node --watch server/src/server.js",
+    "dev:client": "npm --workspace client run dev",
+    "start": "node server/src/server.js",
+    "build": "npm run build:client && npm run seed",
+    "qa": "node server/test/api.test.js"
+  },
+  "engines": {
+    "node": ">=20"
+  }
+}

@@ -1,0 +1,7 @@
+node_modules/
+client/dist/
+server/db/*.sqlite
+server/db/*.sqlite-*
+*.log
+.DS_Store
+# geometry-cache.json IS committed (deterministic, offline-safe seeding)
