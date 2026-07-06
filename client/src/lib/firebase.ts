@@ -51,6 +51,40 @@ export async function getFirestoreReviews(waterbodyId: string): Promise<Review[]
   return rows.sort((a, b) => b.created_at.localeCompare(a.created_at));
 }
 
+export interface UserPhoto { id: string; url: string; credit: string; submittedBy: string; created_at: string }
+
+/** Community-contributed photo links for a water body, newest first. */
+export async function getPhotoContributions(waterbodyId: string): Promise<UserPhoto[]> {
+  const q = query(collection(db, 'photos'), where('waterbodyId', '==', waterbodyId));
+  const snap = await getDocs(q);
+  return snap.docs
+    .map((doc) => {
+      const d = doc.data() as Record<string, unknown>;
+      return {
+        id: doc.id,
+        url: String(d.url ?? ''),
+        credit: String(d.credit ?? ''),
+        submittedBy: String(d.submittedBy ?? ''),
+        created_at: fmt((d.created_at as Timestamp) ?? null),
+      };
+    })
+    .sort((a, b) => b.created_at.localeCompare(a.created_at));
+}
+
+export async function addPhotoContribution(
+  waterbodyId: string,
+  p: { url: string; credit?: string; submittedBy: string },
+): Promise<UserPhoto> {
+  const ref = await addDoc(collection(db, 'photos'), {
+    waterbodyId,
+    url: p.url,
+    credit: p.credit ?? '',
+    submittedBy: p.submittedBy,
+    created_at: serverTimestamp(),
+  });
+  return { id: ref.id, url: p.url, credit: p.credit ?? '', submittedBy: p.submittedBy, created_at: fmt(null) };
+}
+
 export async function addFirestoreReview(
   waterbodyId: string,
   payload: { author: string; rating: number; target_species?: string; body: string },

@@ -11,7 +11,7 @@
           { "key": "X-Frame-Options", "value": "DENY" },
           { "key": "Referrer-Policy", "value": "strict-origin-when-cross-origin" },
           { "key": "Permissions-Policy", "value": "geolocation=(self)" },
-          { "key": "Content-Security-Policy", "value": "default-src 'self'; base-uri 'self'; frame-ancestors 'none'; object-src 'none'; worker-src 'self' blob:; child-src 'self' blob:; img-src 'self' data: blob: https://tiles.openfreemap.org; connect-src 'self' https://tiles.openfreemap.org https://*.googleapis.com https://firestore.googleapis.com; style-src 'self' 'unsafe-inline'; script-src 'self'; font-src 'self' data:" }
+          { "key": "Content-Security-Policy", "value": "default-src 'self'; base-uri 'self'; frame-ancestors 'none'; object-src 'none'; worker-src 'self' blob:; child-src 'self' blob:; img-src 'self' data: blob: https://tiles.openfreemap.org https://upload.wikimedia.org https://firebasestorage.googleapis.com https://*.staticflickr.com https://i.imgur.com https://*.googleusercontent.com; connect-src 'self' https://tiles.openfreemap.org https://*.googleapis.com https://firestore.googleapis.com https://commons.wikimedia.org https://firebasestorage.googleapis.com; style-src 'self' 'unsafe-inline'; script-src 'self'; font-src 'self' data:" }
         ]
       },
       {

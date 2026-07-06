@@ -32,6 +32,26 @@ service cloud.firestore {
       allow update, delete: if false;
     }
 
+    // Community-contributed photo links (public read, validated create-only).
+    match /photos/{photoId} {
+      allow read: if true;
+      allow create: if
+        request.resource.data.keys().hasOnly(['waterbodyId','url','credit','submittedBy','created_at'])
+        && request.resource.data.waterbodyId is string
+        && request.resource.data.waterbodyId.size() > 0
+        && request.resource.data.waterbodyId.size() <= 80
+        && request.resource.data.url is string
+        && request.resource.data.url.matches('https://.*')
+        && request.resource.data.url.size() <= 500
+        && request.resource.data.credit is string
+        && request.resource.data.credit.size() <= 120
+        && request.resource.data.submittedBy is string
+        && request.resource.data.submittedBy.size() >= 1
+        && request.resource.data.submittedBy.size() <= 60
+        && request.resource.data.created_at == request.time;
+      allow update, delete: if false;
+    }
+
     // Deny everything else.
     match /{document=**} {
       allow read, write: if false;

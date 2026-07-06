@@ -165,6 +165,37 @@ button { font-family: inherit; cursor: pointer; }
 .detail-rating { margin-top: 12px; display: flex; align-items: center; gap: 7px; font-size: 14px; }
 .detail-desc { padding: 14px 18px 0; margin: 0; color: #334155; line-height: 1.5; font-size: 14.5px; }
 
+/* Photos (auto-sourced from Wikimedia Commons + crowdsourced uploads) */
+.photos { padding: 14px 18px 0; }
+.photo-hero { display: block; position: relative; border-radius: 12px; overflow: hidden; box-shadow: var(--shadow-sm); }
+.photo-hero img { width: 100%; height: 200px; object-fit: cover; display: block; background: #eef2f5; }
+.photo-credit {
+  position: absolute; left: 0; right: 0; bottom: 0; color: #fff; font-size: 11px; font-weight: 600;
+  padding: 20px 10px 7px; background: linear-gradient(transparent, rgba(8, 47, 63, 0.82));
+  white-space: nowrap; overflow: hidden; text-overflow: ellipsis;
+}
+.photo-strip { display: flex; gap: 6px; margin-top: 6px; overflow-x: auto; padding-bottom: 2px; }
+.photo-thumb { flex: 0 0 auto; }
+.photo-thumb img { width: 74px; height: 55px; object-fit: cover; border-radius: 8px; display: block; background: #eef2f5; }
+.photo-hero.skeleton, .skeleton { height: 200px; border-radius: 12px;
+  background: linear-gradient(90deg, #eef2f5 25%, #f6f9fb 50%, #eef2f5 75%); background-size: 200% 100%;
+  animation: shimmer 1.3s infinite; }
+@keyframes shimmer { from { background-position: 200% 0; } to { background-position: -200% 0; } }
+@media (prefers-reduced-motion: reduce) { .skeleton { animation: none; } }
+
+/* Crowdsourced photo upload */
+.upload-photo { margin: 12px 18px 0; }
+.upload-btn {
+  display: inline-flex; align-items: center; gap: 7px; font-size: 13px; font-weight: 700;
+  color: var(--water-700); background: #fff; border: 1px dashed var(--water-600); border-radius: 10px;
+  padding: 9px 14px; cursor: pointer; width: 100%; justify-content: center;
+}
+.upload-btn:hover { background: #f0f7fb; }
+.upload-btn:disabled { opacity: 0.6; cursor: default; }
+.upload-note { font-size: 11.5px; color: var(--muted); margin: 6px 0 0; }
+.upload-err { font-size: 12px; color: #b91c1c; margin-top: 6px; }
+.user-photo-credit { position: absolute; left: 0; right: 0; bottom: 0; color: #fff; font-size: 11px; font-weight: 600; padding: 18px 10px 6px; background: linear-gradient(transparent, rgba(8,47,63,.82)); }
+
 section { padding: 18px; border-bottom: 1px solid var(--line); }
 section h3 { margin: 0 0 4px; font-size: 15px; display: flex; align-items: center; gap: 8px; }
 .count {

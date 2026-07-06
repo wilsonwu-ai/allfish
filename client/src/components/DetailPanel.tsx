@@ -2,6 +2,7 @@ import { useState } from 'react';
 import type { WaterbodyDetail, Review, SpeciesLink } from '../lib/api';
 import { postReview } from '../lib/api';
 import Stars from './Stars';
+import Photos from './Photos';
 
 const TYPE_LABEL: Record<string, string> = {
   lake: 'Lake', pond: 'Pond', river: 'River', stream: 'Stream', reservoir: 'Reservoir',
@@ -117,6 +118,8 @@ export default function DetailPanel({ wb, onBack }: { wb: WaterbodyDetail; onBac
             : <span className="muted">No angler reports yet — be the first.</span>}
         </div>
       </div>
+
+      <Photos id={wb.id} name={wb.name} admin={wb.admin} />
 
       {wb.description && <p className="detail-desc">{wb.description}</p>}
 
