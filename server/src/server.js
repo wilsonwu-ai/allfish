@@ -71,6 +71,7 @@ const waterbodiesQuery = {
     type: { type: 'string', enum: ['lake', 'pond', 'river', 'stream', 'reservoir'] },
     country: { type: 'string', enum: ['US', 'CA'] },
     salinity: { type: 'string', enum: ['fresh', 'salt', 'mixed'] },
+    hasFish: { type: 'string', enum: ['1'] },
     species: { type: 'string', maxLength: 80 },
     limit: { type: 'integer', minimum: 1, maximum: 1000 }, // F2: lower cap
   },
@@ -103,7 +104,7 @@ app.get('/api/stats', async () => stats());
 app.get('/api/species', async () => ({ species: listSpecies() }));
 
 app.get('/api/waterbodies', { schema: { querystring: waterbodiesQuery } }, async (req, reply) => {
-  const { bbox, type, country, species, salinity, limit } = req.query;
+  const { bbox, type, country, species, salinity, hasFish, limit } = req.query;
   // Default to the full US+Canada extent when no viewport is supplied.
   let box = { minLng: -170, minLat: 18, maxLng: -52, maxLat: 72 };
   if (bbox) {
@@ -118,7 +119,7 @@ app.get('/api/waterbodies', { schema: { querystring: waterbodiesQuery } }, async
     }
     box = { minLng, minLat, maxLng, maxLat };
   }
-  const rows = listWaterbodiesInBbox({ ...box, type, country, species, salinity, limit });
+  const rows = listWaterbodiesInBbox({ ...box, type, country, species, salinity, hasFish: hasFish === '1', limit });
   return {
     type: 'FeatureCollection',
     attribution: 'Water: USGS NHD (US) / NRCan NHN (CA) · Geometry © OpenStreetMap contributors (ODbL) · Species: state/provincial fish & wildlife agencies',

@@ -58,10 +58,17 @@ Run with: `node server/db/ingest-region.js boston` · `node server/db/ingest-reg
 
 *(Populated after each ingestion — see the live counts below.)*
 
-| Region | Named waters | Fresh | Salt | Mixed | Rivers | With minnows |
+| Region | Named waters | Fresh | Salt | Mixed | Rivers | Lakes/Ponds/Reservoirs |
 |---|---|---|---|---|---|---|
-| Greater Boston (50 mi) | _pending_ | _–_ | _–_ | _–_ | _–_ | _pending_ |
-| New York State | _pending_ | _–_ | _–_ | _–_ | _–_ | _pending_ |
+| Greater Boston (50 mi) | **2,770** | 2,682 | 39 | 49 | 217 | 210 / 1,669 / 674 |
+| New York State | **15,863** | 15,790 | 21 | 52 | 1,371 | 2,981 / 8,507 / 3,004 |
+| **Total** | **18,633** | 18,472 | 60 | 101 | 1,588 | 3,191 / 10,176 / 3,678 |
+
+*(Grand total in DB incl. 18 hand-curated flagship waters: **18,291** — some border features dedupe across the two regions.)*
+
+Every feature carries an OpenStreetMap permalink; salt/mixed calls come from OSM `tidal`/`salt` tags or unambiguous names (e.g. New Bedford Harbor, Weweantic River → mixed; Salt Pond → salt), each with its basis shown in-app.
+
+**Minnows:** enriched on freshwater samples (largest waters first) via iNaturalist minnow-family queries; documented minnow species (Golden Shiner, Common Shiner, Fallfish, Fathead Minnow, Blacknose/Bluntnose/Blacktail Shiner, Emerald Shiner, and others) were added to the waters where iNaturalist has research-grade records, each linked to its observation query. Waters with any documented fish are surfaced by the **"Has fish data"** filter; all others honestly show a *"no species documented yet"* notice with a live iNaturalist link to check.
 
 ## 7. Honest limitations
 

@@ -192,6 +192,16 @@ section h3 { margin: 0 0 4px; font-size: 15px; display: flex; align-items: cente
 .conf-medium { background: #fef9c3; color: #a16207; }
 .conf-low { background: #fee2e2; color: #b91c1c; }
 
+.no-fish { background: #f8fafc; border: 1px solid var(--line); border-radius: 12px; padding: 14px; }
+.no-fish p { margin: 0 0 8px; font-size: 13.5px; }
+.no-fish p:first-child { color: var(--ink); }
+.verify-link {
+  display: inline-block; margin-top: 4px; font-size: 13px; font-weight: 700;
+  color: var(--water-600); text-decoration: none; padding: 8px 12px;
+  border: 1px solid var(--line); border-radius: 9px; background: #fff;
+}
+.verify-link:hover { background: #f0f7fb; }
+
 /* --------------------------------- Reviews ---------------------------------- */
 .review-form { background: #f8fafc; border: 1px solid var(--line); border-radius: 12px; padding: 14px; margin-bottom: 16px; }
 .review-form h4 { margin: 0 0 10px; font-size: 14px; }

@@ -70,7 +70,11 @@ export interface WaterbodyDetail {
   description: string | null;
   centroid_lng: number;
   centroid_lat: number;
-  geometry: GeoJSON.Geometry;
+  min_lng: number;
+  min_lat: number;
+  max_lng: number;
+  max_lat: number;
+  geometry?: GeoJSON.Geometry; // present from the API; omitted in the static build (client doesn't render it)
   salinity: 'fresh' | 'salt' | 'mixed' | null;
   salinity_basis: string | null;
   water_source_name: string;
@@ -141,7 +145,7 @@ function saveLocalReview(id: string, r: Review) {
 }
 
 // -------------------------------- Public API -------------------------------
-export type WaterFilters = { type?: WaterType; country?: 'US' | 'CA'; species?: string; salinity?: 'fresh' | 'salt' | 'mixed' };
+export type WaterFilters = { type?: WaterType; country?: 'US' | 'CA'; species?: string; salinity?: 'fresh' | 'salt' | 'mixed'; hasFish?: boolean };
 
 export async function fetchWaterbodies(
   bbox: Bbox | null,
@@ -154,6 +158,7 @@ export async function fetchWaterbodies(
       if (filters.type && f.properties.water_type !== filters.type) return false;
       if (filters.country && f.properties.country !== filters.country) return false;
       if (filters.salinity && f.properties.salinity !== filters.salinity) return false;
+      if (filters.hasFish && !(f.properties.species_count && f.properties.species_count > 0)) return false;
       if (filters.species && !(f.properties.speciesIds || []).includes(filters.species)) return false;
       return true;
     });
@@ -165,6 +170,7 @@ export async function fetchWaterbodies(
   if (filters.type) p.set('type', filters.type);
   if (filters.country) p.set('country', filters.country);
   if (filters.salinity) p.set('salinity', filters.salinity);
+  if (filters.hasFish) p.set('hasFish', '1');
   if (filters.species) p.set('species', filters.species);
   return j<FeatureCollection>(`/api/waterbodies?${p.toString()}`);
 }

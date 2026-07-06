@@ -33,8 +33,11 @@ for (const row of rows) {
   feature.geometry = round5(feature.geometry);
   feature.properties.speciesIds = wb.species.map((s) => s.id);
   features.push(feature);
+  // Geometry is intentionally omitted from details — the client reads geometry
+  // only from waterbodies.geojson (the detail panel uses bbox + species). This
+  // keeps details.json ~10x smaller for the static bundle.
   const { geometry_json, ...rest } = wb;
-  details[row.id] = { ...rest, geometry: round5(JSON.parse(geometry_json)) };
+  details[row.id] = rest;
 }
 
 const fc = { type: 'FeatureCollection', attribution: ATTRIBUTION, features };

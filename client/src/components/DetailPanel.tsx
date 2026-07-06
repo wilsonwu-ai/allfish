@@ -140,10 +140,26 @@ export default function DetailPanel({ wb, onBack }: { wb: WaterbodyDetail; onBac
 
       <section className="species">
         <h3>Fish present <span className="count">{wb.species.length}</span></h3>
-        <p className="section-note">Each species is linked to the source that documents it in this water.</p>
-        <ul className="species-list">
-          {wb.species.map((s) => <SpeciesRow key={s.id} s={s} />)}
-        </ul>
+        {wb.species.length > 0 ? (
+          <>
+            <p className="section-note">Each species is linked to the source that documents it in this water.</p>
+            <ul className="species-list">
+              {wb.species.map((s) => <SpeciesRow key={s.id} s={s} />)}
+            </ul>
+          </>
+        ) : (
+          <div className="no-fish">
+            <p><b>No fish species documented yet</b> — this is a data gap, not a survey result. It does <i>not</i> mean the water is fishless.</p>
+            <p className="section-note">
+              AllFish attributes species from state/provincial fish &amp; wildlife agencies and from iNaturalist research-grade observations. Neither has records matched to this specific water yet, so we don&apos;t assert any species rather than guess. Check the primary source yourself:
+            </p>
+            <a className="verify-link"
+              href={`https://www.inaturalist.org/observations?taxon_id=47178&nelat=${wb.max_lat}&nelng=${wb.max_lng}&swlat=${wb.min_lat}&swlng=${wb.min_lng}&quality_grade=research&verifiable=true`}
+              target="_blank" rel="noopener noreferrer">
+              Search iNaturalist for fish in this water ↗
+            </a>
+          </div>
+        )}
       </section>
 
       <section className="reviews">

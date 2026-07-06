@@ -24,6 +24,8 @@ export function listWaterbodiesInBbox(q) {
   if (q.type) { clauses.push('w.water_type = @type'); params.type = q.type; }
   if (q.country) { clauses.push('w.country = @country'); params.country = q.country; }
   if (q.salinity) { clauses.push('w.salinity = @salinity'); params.salinity = q.salinity; }
+  // "Has fish" — only waters with at least one documented (cited) species.
+  if (q.hasFish) clauses.push('EXISTS (SELECT 1 FROM waterbody_species s2 WHERE s2.waterbody_id = w.id)');
 
   let sql = `
     SELECT w.id, w.name, w.water_type, w.country, w.admin,
