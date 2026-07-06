@@ -141,6 +141,9 @@ button { font-family: inherit; cursor: pointer; }
 .type-river, .type-stream { background: #cffafe; color: #0e7490; }
 .type-reservoir { background: #ede9fe; color: #6d28d9; }
 .chip-cat { background: #f1f5f9; color: #475569; text-transform: capitalize; }
+.sal-fresh { background: #dcfce7; color: #15803d; }
+.sal-salt { background: #e0e7ff; color: #3730a3; }
+.sal-mixed { background: #fef3c7; color: #b45309; }
 
 .muted { color: var(--muted); }
 .small { font-size: 12px; }

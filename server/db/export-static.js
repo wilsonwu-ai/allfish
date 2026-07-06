@@ -5,7 +5,7 @@
 import { writeFileSync, mkdirSync } from 'node:fs';
 import { fileURLToPath } from 'node:url';
 import { dirname, join } from 'node:path';
-import { listWaterbodiesInBbox, getWaterbody, listSpecies, rowToFeature } from '../src/repo.js';
+import { allWaterbodyRows, getWaterbody, listSpecies, rowToFeature } from '../src/repo.js';
 import { closeDb } from '../src/db.js';
 
 const __dirname = dirname(fileURLToPath(import.meta.url));
@@ -15,17 +15,26 @@ mkdirSync(OUT, { recursive: true });
 const ATTRIBUTION =
   'Water: USGS NHD (US) / NRCan NHN (CA) · Geometry © OpenStreetMap contributors (ODbL) · Species: state/provincial fish & wildlife agencies';
 
-const rows = listWaterbodiesInBbox({ minLng: -180, minLat: -90, maxLng: 180, maxLat: 90, limit: 5000 });
+// Round coordinates to 5 decimals (~1 m) to shrink the static bundle ~35%
+// with no visible quality loss at map scale.
+function round5(geom) {
+  const r = (n) => Math.round(n * 1e5) / 1e5;
+  const walk = (c) => (typeof c[0] === 'number' ? [r(c[0]), r(c[1])] : c.map(walk));
+  return { ...geom, coordinates: walk(geom.coordinates) };
+}
+
+const rows = allWaterbodyRows();
 
 const features = [];
 const details = {};
 for (const row of rows) {
   const wb = getWaterbody(row.id);
   const feature = rowToFeature(row);
+  feature.geometry = round5(feature.geometry);
   feature.properties.speciesIds = wb.species.map((s) => s.id);
   features.push(feature);
   const { geometry_json, ...rest } = wb;
-  details[row.id] = { ...rest, geometry: JSON.parse(geometry_json) };
+  details[row.id] = { ...rest, geometry: round5(JSON.parse(geometry_json)) };
 }
 
 const fc = { type: 'FeatureCollection', attribution: ATTRIBUTION, features };

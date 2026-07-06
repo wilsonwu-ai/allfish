@@ -53,10 +53,13 @@ function run() {
 
     const insWb = db.prepare(`
       INSERT INTO waterbody (id,name,water_type,country,admin,description,centroid_lng,centroid_lat,
-        min_lng,min_lat,max_lng,max_lat,geometry_json,water_source_name,water_source_url,water_source_license,geometry_source)
+        min_lng,min_lat,max_lng,max_lat,geometry_json,water_source_name,water_source_url,water_source_license,geometry_source,salinity,salinity_basis)
       VALUES (@id,@name,@water_type,@country,@admin,@description,@centroid_lng,@centroid_lat,
-        @min_lng,@min_lat,@max_lng,@max_lat,@geometry_json,@water_source_name,@water_source_url,@water_source_license,@geometry_source)
+        @min_lng,@min_lat,@max_lng,@max_lat,@geometry_json,@water_source_name,@water_source_url,@water_source_license,@geometry_source,@salinity,@salinity_basis)
     `);
+    // The curated waters are inland freshwater fisheries, except the Fraser's
+    // tidal lower reach near Vancouver (brackish/mixed).
+    const MIXED = new Set(['ca-bc-fraser']);
     const insSpecies = db.prepare(`INSERT OR IGNORE INTO species (id,common_name,scientific_name,category) VALUES (@id,@common_name,@scientific_name,@category)`);
     const insLink = db.prepare(`
       INSERT OR REPLACE INTO waterbody_species (waterbody_id,species_id,evidence,confidence,source_name,source_url,source_publisher)
@@ -82,6 +85,8 @@ function run() {
         geometry_json: JSON.stringify(g.geometry),
         water_source_name: waterName, water_source_url: waterUrl, water_source_license: wb.water_source.license,
         geometry_source: g.source,
+        salinity: MIXED.has(wb.id) ? 'mixed' : 'fresh',
+        salinity_basis: MIXED.has(wb.id) ? 'tidal lower reach (brackish/estuarine)' : 'inland freshwater fishery',
       });
       for (const sp of wb.species || []) {
         const sid = slug(sp.scientific_name || sp.common_name);

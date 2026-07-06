@@ -23,11 +23,13 @@ export function listWaterbodiesInBbox(q) {
   };
   if (q.type) { clauses.push('w.water_type = @type'); params.type = q.type; }
   if (q.country) { clauses.push('w.country = @country'); params.country = q.country; }
+  if (q.salinity) { clauses.push('w.salinity = @salinity'); params.salinity = q.salinity; }
 
   let sql = `
     SELECT w.id, w.name, w.water_type, w.country, w.admin,
            w.centroid_lng, w.centroid_lat, w.geometry_json,
            w.water_source_name, w.water_source_url, w.water_source_license, w.geometry_source,
+           w.salinity, w.salinity_basis,
            (SELECT COUNT(*) FROM waterbody_species s WHERE s.waterbody_id = w.id) AS species_count,
            (SELECT ROUND(AVG(r.rating),2) FROM review r WHERE r.waterbody_id = w.id AND r.status='published') AS avg_rating,
            (SELECT COUNT(*) FROM review r WHERE r.waterbody_id = w.id AND r.status='published') AS review_count
@@ -39,6 +41,21 @@ export function listWaterbodiesInBbox(q) {
   }
   sql += ` WHERE ${clauses.join(' AND ')} LIMIT @limit`;
   return db.prepare(sql).all(params);
+}
+
+/** All water bodies (no bbox/limit) — for the static export only, not the API. */
+export function allWaterbodyRows() {
+  const db = getDb();
+  return db.prepare(`
+    SELECT w.id, w.name, w.water_type, w.country, w.admin,
+           w.centroid_lng, w.centroid_lat, w.geometry_json,
+           w.water_source_name, w.water_source_url, w.water_source_license, w.geometry_source,
+           w.salinity, w.salinity_basis,
+           (SELECT COUNT(*) FROM waterbody_species s WHERE s.waterbody_id = w.id) AS species_count,
+           (SELECT ROUND(AVG(r.rating),2) FROM review r WHERE r.waterbody_id = w.id AND r.status='published') AS avg_rating,
+           (SELECT COUNT(*) FROM review r WHERE r.waterbody_id = w.id AND r.status='published') AS review_count
+    FROM waterbody w
+  `).all();
 }
 
 /** Full detail for one water body: props + geometry + cited species + published reviews. */
@@ -122,6 +139,8 @@ export function rowToFeature(row) {
       species_count: row.species_count ?? undefined,
       avg_rating: row.avg_rating ?? null,
       review_count: row.review_count ?? 0,
+      salinity: row.salinity ?? null,
+      salinity_basis: row.salinity_basis ?? null,
       water_source: {
         name: row.water_source_name,
         url: row.water_source_url,

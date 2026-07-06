@@ -20,6 +20,8 @@ export interface WaterbodyProps {
   species_count?: number;
   avg_rating: number | null;
   review_count: number;
+  salinity?: 'fresh' | 'salt' | 'mixed' | null;
+  salinity_basis?: string | null;
   water_source: WaterSource;
   geometry_source?: string;
   speciesIds?: string[];
@@ -69,6 +71,8 @@ export interface WaterbodyDetail {
   centroid_lng: number;
   centroid_lat: number;
   geometry: GeoJSON.Geometry;
+  salinity: 'fresh' | 'salt' | 'mixed' | null;
+  salinity_basis: string | null;
   water_source_name: string;
   water_source_url: string;
   water_source_license: string;
@@ -137,9 +141,11 @@ function saveLocalReview(id: string, r: Review) {
 }
 
 // -------------------------------- Public API -------------------------------
+export type WaterFilters = { type?: WaterType; country?: 'US' | 'CA'; species?: string; salinity?: 'fresh' | 'salt' | 'mixed' };
+
 export async function fetchWaterbodies(
   bbox: Bbox | null,
-  filters: { type?: WaterType; country?: 'US' | 'CA'; species?: string } = {},
+  filters: WaterFilters = {},
 ): Promise<FeatureCollection> {
   if (STATIC) {
     const fc = await loadFc();
@@ -147,6 +153,7 @@ export async function fetchWaterbodies(
       if (bbox && !bboxIntersects(featureBbox(f.geometry), bbox)) return false;
       if (filters.type && f.properties.water_type !== filters.type) return false;
       if (filters.country && f.properties.country !== filters.country) return false;
+      if (filters.salinity && f.properties.salinity !== filters.salinity) return false;
       if (filters.species && !(f.properties.speciesIds || []).includes(filters.species)) return false;
       return true;
     });
@@ -157,6 +164,7 @@ export async function fetchWaterbodies(
   if (bbox) p.set('bbox', [r(bbox.minLng), r(bbox.minLat), r(bbox.maxLng), r(bbox.maxLat)].join(','));
   if (filters.type) p.set('type', filters.type);
   if (filters.country) p.set('country', filters.country);
+  if (filters.salinity) p.set('salinity', filters.salinity);
   if (filters.species) p.set('species', filters.species);
   return j<FeatureCollection>(`/api/waterbodies?${p.toString()}`);
 }

@@ -7,6 +7,12 @@ const TYPE_LABEL: Record<string, string> = {
   lake: 'Lake', pond: 'Pond', river: 'River', stream: 'Stream', reservoir: 'Reservoir',
 };
 
+const SALINITY: Record<string, { label: string; cls: string }> = {
+  fresh: { label: 'Freshwater', cls: 'sal-fresh' },
+  salt: { label: 'Salt water', cls: 'sal-salt' },
+  mixed: { label: 'Mixed / brackish', cls: 'sal-mixed' },
+};
+
 function ConfidenceBadge({ c }: { c: SpeciesLink['confidence'] }) {
   const label = { high: 'Documented', medium: 'Reported', low: 'Unconfirmed' }[c];
   return <span className={`conf conf-${c}`} title={`Evidence confidence: ${c}`}>{label}</span>;
@@ -101,6 +107,9 @@ export default function DetailPanel({ wb, onBack }: { wb: WaterbodyDetail; onBac
         <h2>{wb.name}</h2>
         <div className="detail-sub">
           <span className={`chip chip-type type-${wb.water_type}`}>{TYPE_LABEL[wb.water_type]}</span>
+          {wb.salinity && SALINITY[wb.salinity] && (
+            <span className={`chip ${SALINITY[wb.salinity].cls}`}>{SALINITY[wb.salinity].label}</span>
+          )}
           <span className="muted">{wb.admin ?? ''}{wb.admin ? ' · ' : ''}{wb.country === 'US' ? 'United States' : 'Canada'}</span>
         </div>
         <div className="detail-rating">
@@ -121,6 +130,12 @@ export default function DetailPanel({ wb, onBack }: { wb: WaterbodyDetail; onBac
           {wb.geometry_source && <>Shape rendered from <b>{wb.geometry_source}</b>. </>}
           License: {wb.water_source_license}.{isOsm ? '' : ' Authoritative hydrography dataset.'}
         </p>
+        {wb.salinity && SALINITY[wb.salinity] && (
+          <p className="prov-meta">
+            Water type: <b>{SALINITY[wb.salinity].label}</b>
+            {wb.salinity_basis ? <> — {wb.salinity_basis}</> : null} (from the cited OpenStreetMap feature).
+          </p>
+        )}
       </section>
 
       <section className="species">

@@ -7,7 +7,7 @@ import {
   type FeatureCollection, type Bbox, type WaterbodyDetail, type SpeciesRow, type WaterType,
 } from './lib/api';
 
-type Filters = { type?: WaterType; country?: 'US' | 'CA'; species?: string };
+type Filters = { type?: WaterType; country?: 'US' | 'CA'; species?: string; salinity?: 'fresh' | 'salt' | 'mixed' };
 
 // Has the view moved enough since the last search to justify offering a re-search?
 // True on a pan of >25% of the view span or a zoom that changes area by >~40%.
@@ -152,6 +152,12 @@ export default function App() {
             <option value="">US &amp; Canada</option>
             <option value="US">United States</option>
             <option value="CA">Canada</option>
+          </select>
+          <select aria-label="Water salinity" value={filters.salinity ?? ''} onChange={(e) => setFilters((f) => ({ ...f, salinity: (e.target.value || undefined) as 'fresh' | 'salt' | 'mixed' | undefined }))}>
+            <option value="">Fresh &amp; salt</option>
+            <option value="fresh">Freshwater</option>
+            <option value="salt">Salt water</option>
+            <option value="mixed">Mixed / brackish</option>
           </select>
           <select aria-label="Species" value={filters.species ?? ''} onChange={(e) => setFilters((f) => ({ ...f, species: e.target.value || undefined }))}>
             <option value="">Any species</option>

@@ -52,6 +52,9 @@ function migrate(db) {
       water_source_url     TEXT NOT NULL,
       water_source_license TEXT NOT NULL,
       geometry_source      TEXT,                -- where the rendered geometry came from (e.g. OpenStreetMap)
+      -- Salinity classification (fresh / salt / mixed) + the cited basis for it.
+      salinity      TEXT,                       -- 'fresh' | 'salt' | 'mixed' | 'unknown'
+      salinity_basis TEXT,                      -- how it was classified (e.g. 'OSM tidal=yes', 'inland freshwater')
       created_at    TEXT NOT NULL DEFAULT (datetime('now'))
     );
 
@@ -92,6 +95,13 @@ function migrate(db) {
     );
     CREATE INDEX IF NOT EXISTS idx_review_wb ON review (waterbody_id, status);
   `);
+
+  // Idempotent column adds for DBs created before the salinity fields existed.
+  const cols = new Set(db.prepare(`PRAGMA table_info(waterbody)`).all().map((c) => c.name));
+  if (!cols.has('salinity')) db.exec(`ALTER TABLE waterbody ADD COLUMN salinity TEXT`);
+  if (!cols.has('salinity_basis')) db.exec(`ALTER TABLE waterbody ADD COLUMN salinity_basis TEXT`);
+  // Index created after the column is guaranteed to exist.
+  db.exec(`CREATE INDEX IF NOT EXISTS idx_wb_salinity ON waterbody (salinity)`);
 }
 
 export function closeDb() {
