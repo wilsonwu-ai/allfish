@@ -14,6 +14,8 @@
     "build:client": "npm --workspace client run build",
     "export:static": "node server/db/export-static.js",
     "build:pages": "npm run export:static && VITE_STATIC=1 npm --workspace client run build -- --base=./",
+    "build:firebase": "npm run export:static && VITE_FIREBASE=1 npm --workspace client run build",
+    "deploy:firebase": "npm run build:firebase && firebase deploy --only hosting,firestore:rules",
     "dev:server": "node --watch server/src/server.js",
     "dev:client": "npm --workspace client run dev",
     "start": "node server/src/server.js",

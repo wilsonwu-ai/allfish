@@ -97,7 +97,9 @@ export interface SpeciesRow {
 
 export interface Bbox { minLng: number; minLat: number; maxLng: number; maxLat: number }
 
-const STATIC = import.meta.env.VITE_STATIC === '1';
+const FIREBASE = import.meta.env.VITE_FIREBASE === '1';
+// Firebase build also serves water data as static JSON — only reviews differ.
+const STATIC = import.meta.env.VITE_STATIC === '1' || FIREBASE;
 const BASE = import.meta.env.BASE_URL || '/';
 
 async function j<T>(url: string, init?: RequestInit): Promise<T> {
@@ -180,8 +182,17 @@ export async function fetchWaterbody(id: string): Promise<WaterbodyDetail> {
     const details = await loadDetails();
     const base = details[id];
     if (!base) throw new Error('not_found');
-    const local = localReviews(id);
-    const reviews = [...local, ...base.reviews];
+    let extra: Review[] = [];
+    if (FIREBASE) {
+      try {
+        const { getFirestoreReviews } = await import('./firebase');
+        extra = await getFirestoreReviews(id);
+      } catch (e) { console.warn('[allfish] firestore reviews failed', e); extra = []; }
+    } else {
+      extra = localReviews(id);
+    }
+    const baseReviews = Array.isArray((base as { reviews?: Review[] }).reviews) ? (base as { reviews: Review[] }).reviews : [];
+    const reviews = [...extra, ...baseReviews];
     const avg = reviews.length ? Number((reviews.reduce((a, r) => a + r.rating, 0) / reviews.length).toFixed(2)) : null;
     return { ...base, reviews, avg_rating: avg, review_count: reviews.length };
   }
@@ -218,12 +229,22 @@ export async function postReview(
   payload: { author: string; rating: number; target_species?: string; body: string },
 ): Promise<{ review: Review }> {
   if (STATIC) {
+    const cleaned = {
+      author: clean(payload.author).slice(0, 60),
+      rating: Math.max(1, Math.min(5, Math.round(payload.rating))),
+      target_species: payload.target_species ? clean(payload.target_species).slice(0, 80) : undefined,
+      body: clean(payload.body).slice(0, 2000),
+    };
+    if (FIREBASE) {
+      const { addFirestoreReview } = await import('./firebase');
+      return { review: await addFirestoreReview(id, cleaned) };
+    }
     const review: Review = {
       id: Date.now(),
-      author: clean(payload.author).slice(0, 60),
-      rating: Math.max(1, Math.min(5, payload.rating)),
-      target_species: payload.target_species ? clean(payload.target_species).slice(0, 80) : null,
-      body: clean(payload.body).slice(0, 2000),
+      author: cleaned.author,
+      rating: cleaned.rating,
+      target_species: cleaned.target_species ?? null,
+      body: cleaned.body,
       created_at: new Date().toISOString().replace('T', ' ').slice(0, 19),
     };
     saveLocalReview(id, review);

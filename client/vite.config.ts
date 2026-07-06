@@ -10,6 +10,7 @@ export default defineConfig({
   // static (GitHub Pages) build and the full-stack build differ by one env var.
   define: {
     'import.meta.env.VITE_STATIC': JSON.stringify(process.env.VITE_STATIC ?? ''),
+    'import.meta.env.VITE_FIREBASE': JSON.stringify(process.env.VITE_FIREBASE ?? ''),
   },
   server: {
     port: 5173,

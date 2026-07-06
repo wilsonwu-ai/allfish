@@ -175,7 +175,7 @@ export default function App() {
       <div className="body">
         <aside className={`rail ${railOpen ? 'open' : 'closed'}`}>
           {detail
-            ? <DetailPanel wb={detail} onBack={() => setSelectedId(null)} />
+            ? <DetailPanel key={detail.id} wb={detail} onBack={() => setSelectedId(null)} />
             : <ResultsList features={data?.features ?? []} selectedId={selectedId} loading={loading} onSelect={onSelect} />}
         </aside>
 

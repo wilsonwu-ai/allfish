@@ -1,0 +1,40 @@
+rules_version = '2';
+
+// AllFish reviews. Anonymous create is allowed but strictly validated (mirrors
+// the server-side validation of the full-stack build). Reviews are public-read,
+// create-only — no edits or deletes from the client. Everything else is locked.
+service cloud.firestore {
+  match /databases/{database}/documents {
+
+    match /reviews/{reviewId} {
+      allow read: if true;
+
+      allow create: if
+        request.resource.data.keys().hasOnly(['waterbodyId','author','rating','target_species','body','created_at'])
+        && request.resource.data.waterbodyId is string
+        && request.resource.data.waterbodyId.size() > 0
+        && request.resource.data.waterbodyId.size() <= 80
+        && request.resource.data.author is string
+        && request.resource.data.author.size() >= 1
+        && request.resource.data.author.size() <= 60
+        && request.resource.data.rating is int
+        && request.resource.data.rating >= 1
+        && request.resource.data.rating <= 5
+        && request.resource.data.body is string
+        && request.resource.data.body.size() >= 3
+        && request.resource.data.body.size() <= 2000
+        && (request.resource.data.target_species == null
+            || (request.resource.data.target_species is string
+                && request.resource.data.target_species.size() <= 80))
+        // Force a server timestamp so created_at can't be spoofed.
+        && request.resource.data.created_at == request.time;
+
+      allow update, delete: if false;
+    }
+
+    // Deny everything else.
+    match /{document=**} {
+      allow read, write: if false;
+    }
+  }
+}
