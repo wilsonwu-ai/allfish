@@ -86,7 +86,9 @@ export default function App() {
     fetchWaterbody(selectedId).then((d) => {
       if (!live) return;
       setDetail(d);
-      setFlyTo([d.centroid_lng, d.centroid_lat]);
+      // Note: no flyTo here — selecting must NOT move the map. Clicking a dot
+      // keeps you exactly where you are (the water highlights in place); only
+      // list/search picks fly, because there you don't yet know where it is.
     }).catch(() => { if (live) setDetail(null); });
     return () => { live = false; };
   }, [selectedId]);
@@ -99,7 +101,14 @@ export default function App() {
     return () => clearTimeout(t);
   }, [search]);
 
+  // Map-click selection: select + highlight in place, WITHOUT moving the map.
   const onSelect = useCallback((id: string) => {
+    setSelectedId(id);
+    setRailOpen(true);
+  }, []);
+
+  // List selection: fly to it (you can't see it yet), then it highlights.
+  const onSelectFromList = useCallback((id: string) => {
     setSelectedId(id);
     setRailOpen(true);
     const f = data?.features.find((x) => x.id === id);
@@ -176,7 +185,7 @@ export default function App() {
         <aside className={`rail ${railOpen ? 'open' : 'closed'}`}>
           {detail
             ? <DetailPanel key={detail.id} wb={detail} onBack={() => setSelectedId(null)} />
-            : <ResultsList features={data?.features ?? []} selectedId={selectedId} loading={loading} onSelect={onSelect} />}
+            : <ResultsList features={data?.features ?? []} selectedId={selectedId} loading={loading} onSelect={onSelectFromList} />}
         </aside>
 
         <button className="rail-toggle" onClick={() => setRailOpen((o) => !o)} aria-label="Toggle list">

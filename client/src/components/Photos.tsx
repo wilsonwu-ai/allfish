@@ -5,9 +5,9 @@ const FIREBASE = import.meta.env.VITE_FIREBASE === '1';
 
 interface UserPhoto { id: string; url: string; credit: string; submittedBy: string; created_at: string }
 
-// Photos of a water body: auto-sourced from Wikimedia Commons (cited) plus
-// crowdsourced community links (stored in Firestore in the Firebase build).
-export default function Photos({ id, name, admin }: { id: string; name: string; admin: string | null }) {
+// Photos of a water body: auto-sourced from Wikimedia Commons (cited, matched to
+// the water's own coordinates) plus crowdsourced community links (Firestore).
+export default function Photos({ id, name, lat, lng, radiusKm }: { id: string; name: string; lat: number; lng: number; radiusKm: number }) {
   const [auto, setAuto] = useState<WaterPhoto[] | null>(null);
   const [community, setCommunity] = useState<UserPhoto[]>([]);
   const [showForm, setShowForm] = useState(false);
@@ -15,13 +15,13 @@ export default function Photos({ id, name, admin }: { id: string; name: string; 
   useEffect(() => {
     let live = true;
     setAuto(null); setCommunity([]); setShowForm(false);
-    getWaterbodyPhotos(name, admin).then((p) => { if (live) setAuto(p); }).catch(() => { if (live) setAuto([]); });
+    getWaterbodyPhotos(name, { lat, lng, radiusKm }).then((p) => { if (live) setAuto(p); }).catch(() => { if (live) setAuto([]); });
     if (FIREBASE) {
       import('../lib/firebase').then((m) => m.getPhotoContributions(id))
         .then((p) => { if (live) setCommunity(p); }).catch(() => {});
     }
     return () => { live = false; };
-  }, [id, name, admin]);
+  }, [id, name, lat, lng, radiusKm]);
 
   const hero = auto?.[0];
   const strip = auto?.slice(1) ?? [];

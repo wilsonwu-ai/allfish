@@ -113,6 +113,10 @@ export default function MapView({ data, selectedId, flyToCentroid, onSelect, onV
 
       readyRef.current = true;
       onError(null);
+      // QA hook (opt-in via ?qa=1): exposes the map for automated testing only.
+      if (new URLSearchParams(window.location.search).has('qa')) {
+        (window as unknown as { __map?: MLMap }).__map = map;
+      }
       const emit = () => {
         const b = map.getBounds();
         onViewportRef.current({ minLng: b.getWest(), minLat: b.getSouth(), maxLng: b.getEast(), maxLat: b.getNorth() });
@@ -147,9 +151,13 @@ export default function MapView({ data, selectedId, flyToCentroid, onSelect, onV
     const map = mapRef.current;
     if (!map || !readyRef.current) return;
     const id = selectedId ?? '';
+    const isSel: ExpressionSpecification = ['==', ['get', 'id'], id];
     map.setFilter('wb-sel-fill', ['all', POLY_TYPES, ['==', ['get', 'id'], id]]);
     map.setFilter('wb-sel-line', ['==', ['get', 'id'], id]);
-    map.setPaintProperty('wb-dot', 'circle-radius', ['case', ['==', ['get', 'id'], id], 8, 5.5]);
+    // Make the selected water unmistakable in place: big amber dot + thick halo.
+    map.setPaintProperty('wb-dot', 'circle-radius', ['case', isSel, 11, 5.5]);
+    map.setPaintProperty('wb-dot', 'circle-color', ['case', isSel, '#f59e0b', ['match', ['get', 'water_type'], 'river', '#0ea5e9', 'stream', '#0ea5e9', '#0284c7']]);
+    map.setPaintProperty('wb-dot', 'circle-stroke-width', ['case', isSel, 3.5, 2]);
   }, [selectedId]);
 
   // Fly to a selection made from the list.

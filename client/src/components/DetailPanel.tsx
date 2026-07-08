@@ -14,6 +14,14 @@ const SALINITY: Record<string, { label: string; cls: string }> = {
   mixed: { label: 'Mixed / brackish', cls: 'sal-mixed' },
 };
 
+// Photo-search radius scaled to the water's size: small ponds ~4 km, big lakes up
+// to 20 km — so shore photos are found without pulling in same-named waters far off.
+function photoRadiusKm(wb: WaterbodyDetail): number {
+  const latKm = (wb.max_lat - wb.min_lat) * 111;
+  const lngKm = (wb.max_lng - wb.min_lng) * 111 * Math.cos((wb.centroid_lat * Math.PI) / 180);
+  return Math.min(Math.max(Math.max(latKm, lngKm) * 0.7 + 3, 4), 20);
+}
+
 function ConfidenceBadge({ c }: { c: SpeciesLink['confidence'] }) {
   const label = { high: 'Documented', medium: 'Reported', low: 'Unconfirmed' }[c];
   return <span className={`conf conf-${c}`} title={`Evidence confidence: ${c}`}>{label}</span>;
@@ -119,7 +127,7 @@ export default function DetailPanel({ wb, onBack }: { wb: WaterbodyDetail; onBac
         </div>
       </div>
 
-      <Photos id={wb.id} name={wb.name} admin={wb.admin} />
+      <Photos id={wb.id} name={wb.name} lat={wb.centroid_lat} lng={wb.centroid_lng} radiusKm={photoRadiusKm(wb)} />
 
       {wb.description && <p className="detail-desc">{wb.description}</p>}
 
